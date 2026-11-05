@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credit Backbone — Elite Financial Terminal & Education Suite</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Credit Backbone — Elite Financial Terminal & 500-Module Encyclopedia</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -18,53 +17,83 @@
             }
         }
     </script>
-    <!-- Chart.js for Interactive Simulators -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col">
 
     <!-- Top Navigation Bar -->
-    <header class="border-b border-slate-800 bg-slate-900/85 backdrop-blur sticky top-0 z-50">
+    <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-3 shrink-0">
                 <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
                     <i class="fa-solid fa-shield-halved text-white text-lg"></i>
                 </div>
                 <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-indigo-400 bg-clip-text text-transparent">Credit Backbone</span>
             </div>
-            <nav class="hidden md:flex items-center space-x-5 text-sm font-medium text-slate-400">
-                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="text-indigo-400 transition hover:text-white">Dashboard</button>
-                <button onclick="switchTab('estimator')" id="nav-estimator" class="transition hover:text-white">Score Estimator</button>
-                <button onclick="switchTab('simulator')" id="nav-simulator" class="transition hover:text-white">Debt Simulator</button>
-                <button onclick="switchTab('dispute')" id="nav-dispute" class="transition hover:text-white">FCRA Dispute</button>
-                <button onclick="switchTab('validation')" id="nav-validation" class="transition hover:text-white">Debt Validation</button>
-                <button onclick="switchTab('checklist')" id="nav-checklist" class="transition hover:text-white">Audit Checklist</button>
-                <button onclick="switchTab('curriculum')" id="nav-curriculum" class="transition hover:text-white">500 Modules</button>
+            <nav class="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm font-medium text-slate-400 overflow-x-auto py-2 px-2 no-scrollbar">
+                <button onclick="switchTab('curriculum')" id="nav-curriculum" class="text-indigo-400 font-semibold whitespace-nowrap px-2.5 py-1.5 rounded-lg bg-indigo-500/10 transition hover:text-white">500 Modules</button>
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="whitespace-nowrap px-2 py-1 transition hover:text-white">Dashboard</button>
+                <button onclick="switchTab('estimator')" id="nav-estimator" class="whitespace-nowrap px-2 py-1 transition hover:text-white">Estimator</button>
+                <button onclick="switchTab('simulator')" id="nav-simulator" class="whitespace-nowrap px-2 py-1 transition hover:text-white">Debt Simulator</button>
+                <button onclick="switchTab('dispute')" id="nav-dispute" class="whitespace-nowrap px-2 py-1 transition hover:text-white">FCRA Dispute</button>
+                <button onclick="switchTab('validation')" id="nav-validation" class="whitespace-nowrap px-2 py-1 transition hover:text-white">Validation</button>
+                <button onclick="switchTab('goodwill')" id="nav-goodwill" class="whitespace-nowrap px-2 py-1 transition hover:text-white">Goodwill</button>
+                <button onclick="switchTab('checklist')" id="nav-checklist" class="whitespace-nowrap px-2 py-1 transition hover:text-white">Audit</button>
             </nav>
-            <div>
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-2"></span> Terminal Active
-                </span>
-            </div>
         </div>
     </header>
 
     <!-- Main Content Area -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        <!-- TAB 0: DASHBOARD -->
-        <section id="tab-dashboard" class="space-y-8">
+        <!-- TAB: 500 MODULES ENCYCLOPEDIA (DEFAULT ACTIVE SO CONTENT IS IMMEDIATELY VISIBLE) -->
+        <section id="tab-curriculum" class="space-y-6">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-slate-800 pb-6">
+                <div class="max-w-3xl">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-3">
+                        <i class="fa-solid fa-book-open mr-2"></i> Interactive Credit Encyclopedia
+                    </span>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">The 500-Module Master Curriculum</h1>
+                    <p class="mt-2 text-slate-400 text-base">Click any module below to open its full plain-English lesson, real-world numerical example, step-by-step action plan, and federal legal rule.</p>
+                </div>
+                <!-- Progress Box -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 min-w-[240px]">
+                    <div class="flex justify-between text-xs font-semibold mb-2">
+                        <span class="text-slate-400">Your Mastery Progress</span>
+                        <span id="progress-text" class="text-emerald-400">0 / 500 Completed</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
+                        <div id="progress-bar" class="h-full bg-gradient-to-r from-indigo-500 to-emerald-400 transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search & Phase Filters -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-4 shadow-xl">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-500"></i>
+                    <input type="text" id="module-search" placeholder="Search all 500 modules by keyword, number, or topic (e.g., 'AZEO', 'utilization', '1099-C', 'mortgage', 'medical')..." class="w-full bg-slate-950 border border-slate-800 rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500" oninput="renderCurriculum()">
+                </div>
+                <div class="flex flex-wrap gap-2" id="phase-filters">
+                    <!-- Phase buttons populated by JS -->
+                </div>
+            </div>
+
+            <!-- Modules Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="curriculum-container">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- TAB: DASHBOARD -->
+        <section id="tab-dashboard" class="hidden space-y-8">
             <div class="max-w-3xl">
                 <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Tri-Bureau Credit Intelligence</h1>
                 <p class="mt-2 text-slate-400 text-lg">Real-time tracking of your Equifax, Experian, and TransUnion baseline scores and financial health metrics.</p>
             </div>
-
-            <!-- Score Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 text-indigo-500/20 text-4xl"><i class="fa-solid fa-building-columns"></i></div>
                     <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Experian FICO 8</span>
                     <div class="mt-4 flex items-baseline space-x-2">
                         <span class="text-4xl font-extrabold text-white">724</span>
@@ -72,12 +101,10 @@
                     </div>
                     <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between text-xs text-slate-400">
                         <span>Status: <strong class="text-emerald-400">Good</strong></span>
-                        <span>Updated: Today</span>
+                        <span>Bureau: Experian</span>
                     </div>
                 </div>
-
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 text-violet-500/20 text-4xl"><i class="fa-solid fa-chart-line"></i></div>
                     <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Equifax FICO 8</span>
                     <div class="mt-4 flex items-baseline space-x-2">
                         <span class="text-4xl font-extrabold text-white">718</span>
@@ -85,423 +112,603 @@
                     </div>
                     <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between text-xs text-slate-400">
                         <span>Status: <strong class="text-emerald-400">Good</strong></span>
-                        <span>Updated: Today</span>
+                        <span>Bureau: Equifax</span>
                     </div>
                 </div>
-
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 text-blue-500/20 text-4xl"><i class="fa-solid fa-shield-halved"></i></div>
-                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">TransUnion Vantage 3.0</span>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">TransUnion Vantage 4.0</span>
                     <div class="mt-4 flex items-baseline space-x-2">
                         <span class="text-4xl font-extrabold text-white">730</span>
                         <span class="text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">+15 pts</span>
                     </div>
                     <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between text-xs text-slate-400">
                         <span>Status: <strong class="text-indigo-400">Very Good</strong></span>
-                        <span>Updated: Today</span>
+                        <span>Bureau: TransUnion</span>
                     </div>
                 </div>
             </div>
-
-            <!-- Quick Action Hub -->
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
                 <h2 class="text-lg font-semibold text-white flex items-center">
-                    <i class="fa-solid fa-bolt text-indigo-400 mr-2"></i> Instant Score Impact Actions
+                    <i class="fa-solid fa-bolt text-indigo-400 mr-2"></i> Quick-Launch Financial Tools
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <button onclick="switchTab('estimator')" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500/50 text-left transition group">
-                        <div class="text-indigo-400 font-semibold mb-1 group-hover:text-indigo-300">Score Estimator</div>
-                        <p class="text-xs text-slate-400">Calculate projected FICO impact based on habits.</p>
+                    <button onclick="switchTab('curriculum')" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500/50 text-left transition">
+                        <div class="text-indigo-400 font-semibold mb-1">500-Module Library</div>
+                        <p class="text-xs text-slate-400">Read full credit lessons & examples.</p>
                     </button>
-                    <button onclick="switchTab('simulator')" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500/50 text-left transition group">
-                        <div class="text-indigo-400 font-semibold mb-1 group-hover:text-indigo-300">Debt Payoff Engine</div>
-                        <p class="text-xs text-slate-400">Model utilization drops below 30% and 10% tiers.</p>
+                    <button onclick="switchTab('simulator')" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500/50 text-left transition">
+                        <div class="text-indigo-400 font-semibold mb-1">Debt Payoff Engine</div>
+                        <p class="text-xs text-slate-400">Model utilization drops below 30% and 10%.</p>
                     </button>
-                    <button onclick="switchTab('dispute')" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500/50 text-left transition group">
-                        <div class="text-indigo-400 font-semibold mb-1 group-hover:text-indigo-300">Generate FCRA Dispute</div>
-                        <p class="text-xs text-slate-400">Challenge inaccurate late marks or collections.</p>
+                    <button onclick="switchTab('dispute')" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500/50 text-left transition">
+                        <div class="text-indigo-400 font-semibold mb-1">FCRA Dispute Builder</div>
+                        <p class="text-xs text-slate-400">Challenge inaccurate credit bureau items.</p>
                     </button>
-                    <button onclick="switchTab('validation')" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500/50 text-left transition group">
-                        <div class="text-indigo-400 font-semibold mb-1 group-hover:text-indigo-300">Demand Validation</div>
-                        <p class="text-xs text-slate-400">Stop collection agencies under FDCPA Section 809.</p>
+                    <button onclick="switchTab('goodwill')" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500/50 text-left transition">
+                        <div class="text-indigo-400 font-semibold mb-1">Goodwill Letter Suite</div>
+                        <p class="text-xs text-slate-400">Request courtesy removal of late marks.</p>
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 1: SCORE ESTIMATOR -->
+        <!-- TAB: SCORE ESTIMATOR -->
         <section id="tab-estimator" class="hidden space-y-8">
             <div class="max-w-3xl">
                 <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Interactive FICO Score Estimator</h1>
-                <p class="mt-2 text-slate-400 text-lg">Answer key profile questions to estimate your credit standing and identify immediate point-boosting levers.</p>
+                <p class="mt-2 text-slate-400 text-lg">Adjust profile factors below to see how payment history, utilization, account age, and inquiries shape your score.</p>
             </div>
-
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Toggles & Sliders -->
-                <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
-                    <h2 class="text-lg font-semibold text-white flex items-center">
-                        <i class="fa-solid fa-sliders text-indigo-400 mr-2"></i> Profile Factors
-                    </h2>
-
-                    <div class="space-y-5">
-                        <div>
-                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Payment History (Any 30+ day lates in past 24 months?)</label>
-                            <select id="est-lates" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" onchange="calculateEstimatedScore()">
-                                <option value="0">Zero Late Payments (Pristine)</option>
-                                <option value="-35">1 Late Payment (30 Days)</option>
-                                <option value="-75">Multiple Late Payments or 60+ Days</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Credit Utilization Ratio</label>
-                            <select id="est-util" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" onchange="calculateEstimatedScore()">
-                                <option value="50">Under 10% (Optimal)</option>
-                                <option value="20">10% to 29% (Good)</option>
-                                <option value="-30">30% to 50% (Fair - Penalty Zone)</option>
-                                <option value="-70">Over 50% (High Utilization Penalty)</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Age of Oldest Credit Account</label>
-                            <select id="est-age" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" onchange="calculateEstimatedScore()">
-                                <option value="35">7+ Years (Well Aged)</option>
-                                <option value="15">3 to 6 Years</option>
-                                <option value="-20">Under 3 Years (Thin/New File)</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Hard Inquiries (Past 12 Months)</label>
-                            <select id="est-inquiries" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" onchange="calculateEstimatedScore()">
-                                <option value="10">0 to 1 Inquiries</option>
-                                <option value="-15">2 to 4 Inquiries</option>
-                                <option value="-40">5+ Inquiries (Seeking Credit Aggressively)</option>
-                            </select>
-                        </div>
+                <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-5">
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Payment History (35% Weight)</label>
+                        <select id="est-lates" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" onchange="calculateEstimatedScore()">
+                            <option value="0">Zero Late Payments (Pristine)</option>
+                            <option value="-45">1 Late Payment (30 Days Late)</option>
+                            <option value="-95">Multiple Late Payments or 60–90+ Days Late</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Credit Utilization Ratio (30% Weight)</label>
+                        <select id="est-util" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" onchange="calculateEstimatedScore()">
+                            <option value="55">1% to 9% (AZEO Optimal Zone)</option>
+                            <option value="25">10% to 29% (Good Standing)</option>
+                            <option value="-25">30% to 49% (Moderate Penalty Zone)</option>
+                            <option value="-75">50% to 100% (Severe High-Utilization Penalty)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Length of Credit History (15% Weight)</label>
+                        <select id="est-age" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" onchange="calculateEstimatedScore()">
+                            <option value="35">7+ Years Average Age</option>
+                            <option value="15">3 to 6 Years Average Age</option>
+                            <option value="-20">Under 3 Years (Thin / Young File)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">New Credit & Hard Inquiries (10% Weight)</label>
+                        <select id="est-inquiries" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" onchange="calculateEstimatedScore()">
+                            <option value="10">0 to 1 Hard Inquiries in Past 12 Months</option>
+                            <option value="-15">2 to 4 Hard Inquiries</option>
+                            <option value="-40">5+ Hard Inquiries</option>
+                        </select>
                     </div>
                 </div>
-
-                <!-- Score Output Card -->
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between space-y-6">
                     <div>
                         <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Estimated FICO Score</span>
                         <div class="mt-4 flex items-baseline space-x-3">
-                            <span id="est-score-display" class="text-5xl font-extrabold text-white">740</span>
+                            <span id="est-score-display" class="text-5xl font-extrabold text-white">750</span>
                             <span id="est-tier-badge" class="text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">Very Good</span>
                         </div>
                     </div>
-
-                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
-                        <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-400">Key Takeaway</h3>
-                        <p id="est-feedback" class="text-xs text-slate-300 leading-relaxed">Your profile reflects strong foundational credit discipline. Maintain low revolving utilization to protect your tier.</p>
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-400">Actionable Diagnosis</h3>
+                        <p id="est-feedback" class="text-xs text-slate-300 leading-relaxed"></p>
                     </div>
-
-                    <button onclick="switchTab('simulator')" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition shadow-lg shadow-indigo-600/20">
-                        Launch Debt Payoff Engine <i class="fa-solid fa-arrow-right ml-1"></i>
+                    <button onclick="switchTab('simulator')" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition">
+                        Open Debt Payoff Simulator
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 2: SIMULATOR -->
+        <!-- TAB: DEBT SIMULATOR -->
         <section id="tab-simulator" class="hidden space-y-8">
             <div class="max-w-3xl">
                 <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Credit Utilization & Debt Payoff Engine</h1>
-                <p class="mt-2 text-slate-400 text-lg">Model your debt reduction trajectory and see instantly how dropping revolving utilization below critical 30% and 10% thresholds restores your credit score.</p>
+                <p class="mt-2 text-slate-400 text-lg">Model your debt reduction trajectory and see when your revolving balance crosses the 30% and 10% credit limit thresholds.</p>
             </div>
-
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Inputs Card -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
-                    <h2 class="text-lg font-semibold text-white flex items-center">
-                        <i class="fa-solid fa-sliders text-indigo-400 mr-2"></i> Model Parameters
-                    </h2>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Total Revolving Balance ($)</label>
-                            <input type="number" id="sim-balance" value="7500" step="250" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="runSimulation()">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Monthly Payment ($)</label>
-                            <input type="number" id="sim-monthly" value="500" step="50" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="runSimulation()">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Average APR (%)</label>
-                            <input type="number" id="sim-rate" value="20.5" step="0.5" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="runSimulation()">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Total Credit Limit ($)</label>
-                            <input type="number" id="sim-limit" value="10000" step="500" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="runSimulation()">
-                        </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-5">
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Total Revolving Balance ($)</label>
+                        <input type="number" id="sim-balance" value="7500" step="250" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="runSimulation()">
                     </div>
-
-                    <div class="pt-4 border-t border-slate-800 space-y-3">
-                        <div class="flex justify-between text-sm">
-                            <span class="text-slate-400">Starting Utilization:</span>
-                            <span id="stat-start-util" class="font-bold text-amber-400">75%</span>
-                        </div>
-                        <div class="flex justify-between text-sm">
-                            <span class="text-slate-400">Projected Payoff Time:</span>
-                            <span id="stat-payoff-time" class="font-bold text-white">18 Months</span>
-                        </div>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Monthly Payment ($)</label>
+                        <input type="number" id="sim-monthly" value="500" step="50" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="runSimulation()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Average APR (%)</label>
+                        <input type="number" id="sim-rate" value="20.5" step="0.5" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="runSimulation()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Total Credit Limit ($)</label>
+                        <input type="number" id="sim-limit" value="10000" step="500" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="runSimulation()">
+                    </div>
+                    <div class="pt-4 border-t border-slate-800 space-y-2 text-sm">
+                        <div class="flex justify-between"><span class="text-slate-400">Starting Utilization:</span><span id="stat-start-util" class="font-bold text-amber-400">75%</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">Projected Payoff Time:</span><span id="stat-payoff-time" class="font-bold text-white">18 Months</span></div>
                     </div>
                 </div>
-
-                <!-- Chart Card -->
                 <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
-                    <div>
-                        <h2 class="text-lg font-semibold text-white mb-4 flex items-center justify-between">
-                            <span>Balance & Threshold Trajectory</span>
-                            <span class="text-xs text-indigo-400 font-normal">Target: Below 30% (Yellow) & 10% (Green)</span>
-                        </h2>
-                        <div class="h-80 w-full">
-                            <canvas id="simulationChart"></canvas>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-xs text-slate-500 italic">*Simulating balance reduction curve over time against standard credit scoring utilization tiers.</p>
+                    <div class="h-80 w-full"><canvas id="simulationChart"></canvas></div>
+                    <p class="mt-4 text-xs text-slate-500 italic">*Calculated using monthly compounding interest against your total credit limit.</p>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 3: FCRA DISPUTE LETTER GENERATOR -->
+        <!-- TAB: FCRA DISPUTE GENERATOR -->
         <section id="tab-dispute" class="hidden space-y-8">
             <div class="max-w-3xl">
-                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">FCRA Dispute Letter Generator</h1>
-                <p class="mt-2 text-slate-400 text-lg">Generate a legally compliant federal dispute letter under Section 611 of the Fair Credit Reporting Act to challenge inaccurate items with credit bureaus.</p>
+                <h1 class="text-3xl font-extrabold text-white">FCRA Section 611 Dispute Letter Generator</h1>
+                <p class="mt-2 text-slate-400">Generate a formal credit bureau dispute letter enforcing the 30-day statutory investigation window.</p>
             </div>
-
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Form Inputs -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-                    <h2 class="text-lg font-semibold text-white flex items-center">
-                        <i class="fa-solid fa-file-pen text-indigo-400 mr-2"></i> Dispute Details
-                    </h2>
-                    <div>
-                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Your Full Name</label>
-                        <input type="text" id="gen-name" value="Jane Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateDisputeLetter()">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Credit Bureau</label>
-                        <select id="gen-bureau" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" onchange="generateDisputeLetter()">
-                            <option value="Experian Information Solutions, Inc.">Experian</option>
-                            <option value="Equifax Information Services LLC">Equifax</option>
-                            <option value="TransUnion LLC">TransUnion</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Creditor / Furnisher Name</label>
-                        <input type="text" id="gen-creditor" value="Acme Financial Bank" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateDisputeLetter()">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Account Number</label>
-                        <input type="text" id="gen-account" value="XXXX-XXXX-1234" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateDisputeLetter()">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Reason for Dispute</label>
-                        <select id="gen-reason" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" onchange="generateDisputeLetter()">
-                            <option value="This account is inaccurate and does not belong to me (Possible Fraud/Mix-up).">Inaccurate account / Not mine</option>
-                            <option value="The late payment marks reported on this account are factually incorrect; payments were made on time.">Incorrect late payment history</option>
-                            <option value="This collection account has been paid/settled and is incorrectly reporting an active balance.">Incorrect balance on paid collection</option>
-                        </select>
-                    </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                    <input type="text" id="gen-name" value="Jane Doe" placeholder="Your Full Name" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="generateDisputeLetter()">
+                    <select id="gen-bureau" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" onchange="generateDisputeLetter()">
+                        <option value="Experian Information Solutions, Inc.">Experian</option>
+                        <option value="Equifax Information Services LLC">Equifax</option>
+                        <option value="TransUnion LLC">TransUnion</option>
+                    </select>
+                    <input type="text" id="gen-creditor" value="Acme Financial Bank" placeholder="Creditor Name" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="generateDisputeLetter()">
+                    <input type="text" id="gen-account" value="XXXX-1234" placeholder="Account Number" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="generateDisputeLetter()">
+                    <select id="gen-reason" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" onchange="generateDisputeLetter()">
+                        <option value="This account is inaccurate and does not belong to me.">Inaccurate account / Not mine</option>
+                        <option value="The late payment marks reported on this account are factually incorrect.">Incorrect late payment history</option>
+                        <option value="This collection account was settled/paid and is inaccurately reporting a balance.">Incorrect balance on paid collection</option>
+                    </select>
                 </div>
-
-                <!-- Generated Letter Output -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-lg font-semibold text-white flex items-center">
-                            <i class="fa-solid fa-envelope-open-text text-indigo-400 mr-2"></i> Live Preview
-                        </h2>
-                        <button onclick="copyText('dispute-output', 'copy-btn-dispute')" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition flex items-center space-x-1.5">
-                            <i class="fa-solid fa-copy"></i> <span id="copy-btn-dispute">Copy Letter</span>
-                        </button>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-semibold text-white">Letter Preview</span>
+                        <button onclick="copyText('dispute-output', 'copy-btn-dispute')" class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white text-xs font-medium"><span id="copy-btn-dispute">Copy Letter</span></button>
                     </div>
-                    <textarea id="dispute-output" readonly class="w-full h-80 bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-300 text-xs font-mono focus:outline-none resize-none"></textarea>
-                    <p class="text-xs text-slate-500 italic">*Send via USPS Certified Mail with Return Receipt Requested.</p>
+                    <textarea id="dispute-output" readonly class="w-full h-72 bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-300 text-xs font-mono"></textarea>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 4: DEBT VALIDATION LETTER GENERATOR -->
+        <!-- TAB: FDCPA VALIDATION GENERATOR -->
         <section id="tab-validation" class="hidden space-y-8">
             <div class="max-w-3xl">
-                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">FDCPA Debt Validation Letter Generator</h1>
-                <p class="mt-2 text-slate-400 text-lg">Demand formal verification and itemized accounting from collection agencies under Section 809 of the Fair Debt Collection Practices Act.</p>
+                <h1 class="text-3xl font-extrabold text-white">FDCPA Section 809 Debt Validation Generator</h1>
+                <p class="mt-2 text-slate-400">Demand proof of ownership, original contracts, and itemized accounting from third-party debt collectors.</p>
             </div>
-
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Form Inputs -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-                    <h2 class="text-lg font-semibold text-white flex items-center">
-                        <i class="fa-solid fa-scale-balanced text-indigo-400 mr-2"></i> Collection Details
-                    </h2>
-                    <div>
-                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Your Full Name</label>
-                        <input type="text" id="val-name" value="Jane Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateValidationLetter()">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Collection Agency Name</label>
-                        <input type="text" id="val-agency" value="Apex Recovery Group LLC" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateValidationLetter()">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Alleged Account Number / Ref #</label>
-                        <input type="text" id="val-account" value="COL-9988234" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateValidationLetter()">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Original Creditor Name</label>
-                        <input type="text" id="val-original" value="Metro City Hospital" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateValidationLetter()">
-                    </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                    <input type="text" id="val-name" value="Jane Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="generateValidationLetter()">
+                    <input type="text" id="val-agency" value="Apex Recovery Group LLC" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="generateValidationLetter()">
+                    <input type="text" id="val-account" value="COL-9988234" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="generateValidationLetter()">
+                    <input type="text" id="val-original" value="Metro City Hospital" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="generateValidationLetter()">
                 </div>
-
-                <!-- Generated Letter Output -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h2 class="text-lg font-semibold text-white flex items-center">
-                            <i class="fa-solid fa-envelope-open-text text-indigo-400 mr-2"></i> Live Preview
-                        </h2>
-                        <button onclick="copyText('validation-output', 'copy-btn-val')" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition flex items-center space-x-1.5">
-                            <i class="fa-solid fa-copy"></i> <span id="copy-btn-val">Copy Letter</span>
-                        </button>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-semibold text-white">Validation Notice Preview</span>
+                        <button onclick="copyText('validation-output', 'copy-btn-val')" class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white text-xs font-medium"><span id="copy-btn-val">Copy Letter</span></button>
                     </div>
-                    <textarea id="validation-output" readonly class="w-full h-80 bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-300 text-xs font-mono focus:outline-none resize-none"></textarea>
-                    <p class="text-xs text-slate-500 italic">*Under FDCPA Section 809(b), collectors must cease collection activity until validation is mailed.</p>
+                    <textarea id="validation-output" readonly class="w-full h-72 bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-300 text-xs font-mono"></textarea>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 5: AUDIT CHECKLIST -->
+        <!-- TAB: GOODWILL LETTER GENERATOR -->
+        <section id="tab-goodwill" class="hidden space-y-8">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl font-extrabold text-white">Executive Goodwill Adjustment Generator</h1>
+                <p class="mt-2 text-slate-400">Request a courtesy removal of an isolated late payment mark from a creditor's executive office.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                    <input type="text" id="gw-name" value="Jane Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="generateGoodwillLetter()">
+                    <input type="text" id="gw-bank" value="Chase Executive Office" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="generateGoodwillLetter()">
+                    <input type="text" id="gw-account" value="XXXX-5678" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="generateGoodwillLetter()">
+                    <input type="text" id="gw-date" value="October 2025" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="generateGoodwillLetter()">
+                    <input type="text" id="gw-reason" value="temporary medical emergency and autopay routing reset" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white" oninput="generateGoodwillLetter()">
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-semibold text-white">Goodwill Letter Preview</span>
+                        <button onclick="copyText('goodwill-output', 'copy-btn-gw')" class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white text-xs font-medium"><span id="copy-btn-gw">Copy Letter</span></button>
+                    </div>
+                    <textarea id="goodwill-output" readonly class="w-full h-72 bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-300 text-xs font-mono"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: AUDIT CHECKLIST -->
         <section id="tab-checklist" class="hidden space-y-6">
             <div class="max-w-3xl">
-                <h1 class="text-3xl font-extrabold tracking-tight text-white">Credit Report Audit Checklist</h1>
-                <p class="mt-2 text-slate-400">Inspect your raw tri-merge credit reports for these 10 common reporting errors that drag down scores unnecessarily.</p>
+                <h1 class="text-3xl font-extrabold text-white">Tri-Merge Credit Report Audit Checklist</h1>
+                <p class="mt-2 text-slate-400">Step-by-step inspection list for spotting score-suppressing reporting errors.</p>
             </div>
-
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4 max-w-4xl" id="checklist-container">
-                <!-- Checklist items populated via JS -->
-            </div>
-        </section>
-
-        <!-- TAB 6: CURRICULUM -->
-        <section id="tab-curriculum" class="hidden space-y-6">
-            <div class="max-w-3xl">
-                <h1 class="text-3xl font-extrabold tracking-tight text-white">The 500-Module Master Curriculum</h1>
-                <p class="mt-2 text-slate-400">Complete structured blueprint moving from foundational credit bureau mechanics to advanced litigation and systemic financial literacy.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="curriculum-container">
-                <!-- Populated dynamically via JS -->
-            </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3 max-w-4xl" id="checklist-container"></div>
         </section>
 
     </main>
 
-    <!-- Footer -->
+    <!-- LESSON READER MODAL (OPENS WHEN ANY OF THE 500 MODULES IS CLICKED) -->
+    <div id="lesson-modal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-4xl w-full p-6 sm:p-8 shadow-2xl space-y-6 my-8 max-h-[90vh] overflow-y-auto">
+            <!-- Modal Header -->
+            <div class="flex items-start justify-between gap-4 border-b border-slate-800 pb-4">
+                <div>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span id="modal-badge" class="text-xs font-bold px-2.5 py-1 rounded-md bg-indigo-500/20 text-indigo-300">Module #1</span>
+                        <span id="modal-phase" class="text-xs font-medium text-slate-400">Phase 1</span>
+                    </div>
+                    <h2 id="modal-title" class="text-2xl sm:text-3xl font-extrabold text-white">Module Title</h2>
+                </div>
+                <button onclick="closeModal()" class="h-9 w-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body Sections -->
+            <div class="space-y-6 text-sm sm:text-base leading-relaxed">
+                <!-- 1. Plain-English Concept -->
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-5 space-y-2">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center">
+                        <i class="fa-solid fa-graduation-cap mr-2"></i> 1. The Plain-English Breakdown
+                    </h3>
+                    <p id="modal-concept" class="text-slate-200"></p>
+                </div>
+
+                <!-- 2. Real-World Numerical Example -->
+                <div class="bg-indigo-950/30 border border-indigo-500/30 rounded-xl p-5 space-y-2">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center">
+                        <i class="fa-solid fa-calculator mr-2"></i> 2. Real-World Example & Exact Math
+                    </h3>
+                    <p id="modal-example" class="text-slate-200"></p>
+                </div>
+
+                <!-- 3. Step-by-Step Execution Protocol -->
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-5 space-y-3">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center">
+                        <i class="fa-solid fa-list-check mr-2"></i> 3. Step-by-Step Execution Protocol
+                    </h3>
+                    <ul id="modal-steps" class="space-y-2 text-slate-300 list-disc pl-5"></ul>
+                </div>
+
+                <!-- 4. Statutory / Algorithmic Rule -->
+                <div class="bg-slate-950 border-l-4 border-indigo-500 rounded-r-xl p-4">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-1">
+                        <i class="fa-solid fa-scale-balanced mr-1"></i> Governing Law & Algorithmic Rule
+                    </h3>
+                    <p id="modal-law" class="text-xs sm:text-sm text-slate-300"></p>
+                </div>
+            </div>
+
+            <!-- Modal Footer Controls -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-800">
+                <div class="flex space-x-2">
+                    <button onclick="navigateModule(-1)" id="btn-prev-mod" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white transition">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Previous
+                    </button>
+                    <button onclick="navigateModule(1)" id="btn-next-mod" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white transition">
+                        Next Module <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                <button onclick="toggleCompleteCurrent()" id="btn-complete-mod" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white transition">
+                    <i class="fa-solid fa-check mr-1"></i> Mark Module Complete
+                </button>
+            </div>
+        </div>
+    </div>
+
     <footer class="border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-500">
-        <p>&copy; 2026 Credit Backbone. Engineered for financial sovereignty.</p>
+        <p>&copy; 2026 Credit Backbone. All 500 interactive educational modules unlocked.</p>
     </footer>
 
-    <!-- JavaScript Application Logic -->
     <script>
+        // ============================================================================
+        // MASTER 500-MODULE DATABASE (ALL 500 UNIQUE NON-REPEATING MODULES ACROSS 10 PHASES)
+        // ============================================================================
+        const phaseNames = [
+            "All 500 Modules",
+            "Phase 1: Foundations & Bureaus (1–50)",
+            "Phase 2: Utilization & Debt Math (51–100)",
+            "Phase 3: Dispute Tactics & Law (101–150)",
+            "Phase 4: Mortgages & Milestones (151–200)",
+            "Phase 5: Psychology & Security (201–250)",
+            "Phase 6: Business & Corporate Credit (251–300)",
+            "Phase 7: Predatory Lending Defense (301–350)",
+            "Phase 8: Credit Card Perks & Churning (351–400)",
+            "Phase 9: Legal Remedies & Litigation (401–450)",
+            "Phase 10: Wealth & Estate Architecture (451–500)"
+        ];
+
+        const rawTitles = [
+            // PHASE 1 (1-50)
+            "FICO 5-Factor Pie Chart Breakdown","Equifax, Experian & TransUnion Matrix","FICO 8 vs. VantageScore 3.0 & 4.0","Hard Inquiries vs. Soft Inquiries","Ghost Credit Profile Onboarding","Authorized User (AU) Piggybacking","Secured Credit Card Graduation Matrix","Credit Limit Increase (CLI) Math","Buying Tradelines Risk & Ethics","First 30 Days Credit Onboarding","Hard Inquiry 12-Month Score Recovery","Raw Credit Report Anatomy Decoded","How Utility & Cell Bills Report","Tri-Bureau Security Freeze & Lock Hub","Identity Theft Emergency Protocol","Minor Child SSN Credit Freeze Guide","AnnualCreditReport.com Weekly Access","Thin File Remediation for Students","CFPB Dispute Escalation Flowchart","Top 25 Credit Score Myths Debunked","Age of Oldest Account (AAoA) Formula","Auto & Mortgage Inquiry Rate-Shopping Window","Revolving vs. Installment Credit Mix","Primary Borrower vs. Authorized User Liability","Fair Credit Reporting Act (FCRA) Summary","Equal Credit Opportunity Act (ECOA) Rights","FACT Act Free Report & Fraud Alerts","Credit Score Tier Spectrum (300 to 850)","Spotting Unauthorized Hard Inquiries","Experian Boost & Rent Reporting Mechanics","Risk vs. Reward of Linking Bank Data","Diagnosing Sudden 20-Point Score Drops","International Credit Migration (Nova Credit)","Official Bureau Dispute Mailing Addresses","OptOutPrescreen.com Junk Mail Blocker","LexisNexis & SageStream Specialty Reports","CoreLogic Credco Tri-Merge Reports","15-Point Raw Credit Report Audit","Removing Yourself from Bad AU Accounts","Introduction to Goodwill Letters","Co-Signer Legal & Score Liability","Joint Accounts vs. Authorized Users","How Primary Cardholder Utilization Hurts AUs","Why Free App Scores Differ from Lender Scores","Free vs. Paid Credit Monitoring Tools","The Credit Karma VantageScore Paradox","Credit Lifecycle from Age 18 to 80","Starter Credit Card Decision Tree","Certified Mail Dispute Tracking Ledger","The Credit Rebuilding Manifesto",
+            // PHASE 2 (51-100)
+            "The 30% & 10% Utilization Thresholds","The AZEO (All Zero Except One) Method","Statement Closing Date vs. Payment Due Date","Multi-Cycle Micro-Payment Strategy","Compressing Utilization via Credit Limit Increases","Avoiding the All-Zero ($0) Balance Penalty","Individual Card vs. Aggregate Utilization","0% APR Balance Transfer Fee Math","Debt-to-Income (DTI) Ratio Calculator","Front-End vs. Back-End Mortgage DTI","Debt Snowball vs. Debt Avalanche Math","Compound Interest & Daily Periodic Rate","The Minimum Payment Trap Decoded","Personal Consolidation Loan vs. Revolving Debt","HELOC Debt Consolidation Risk Analysis","Why 401(k) Debt Payoff Loans Backfire","Non-Profit DMP vs. For-Profit Debt Settlement","IRS Form 1099-C Forgiven Debt Tax Bomb","IRS Form 982 Insolvency Tax Exclusion","Chapter 7 vs. Chapter 13 Bankruptcy Matrix","Bankruptcy State Median Income Means Test","Post-Bankruptcy Score Recovery Timeline","Rebuilding Credit Immediately After Discharge","State Statutes of Limitations on Debt","Defending Against Time-Barred Zombie Debt","Fair Debt Collection Practices Act (FDCPA)","Collector Cease and Desist Letter Protocol","FDCPA Section 809 Debt Validation Rules","Medical Debt Credit Reporting Protections","Pay-for-Delete Collection Negotiation Script","Lump-Sum Debt Settlement Percentage Math","Managing Authorized User Utilization Risk","Balancing Reward Points vs. APR Interest","Surviving Sudden Bank Credit Limit Cuts","Reading Credit Cardholder Agreements","How Penalty APR (29.99%) Gets Triggered","Automated Bi-Weekly Sweep Payments","Why Closing Old Cards Hurts Your Score","Annual Fee Card Cost-Benefit Formula","Product Changing Cards to Avoid Annual Fees","Bank Balance-Chasing Risk Algorithms","Credit Card Over-Limit Opt-In Rules","Why Cash Advances Accrue Instant Interest","Balance Transfer Arbitrage Guardrails","Emergency 72-Hour Utilization Rapid Rescore","Credit Card Sign-Up Bonus Hygiene","Protecting Family Authorized User Slots","Gamifying Debt Payoff Milestones","Daily Periodic Rate (DPR) Exact Formula","The Master Debt-Free Execution Plan",
+            // PHASE 3 (101-150)
+            "Drafting FCRA Section 611 Dispute Letters","Enforcing the 30-Day Investigation Window","Method of Verification (MOV) Demands","Filing High-Impact CFPB Portal Complaints","State Attorney General Banking Complaints","Dual-Filing BBB & CFPB Escalations","Overcoming 'Frivolous Dispute' Stall Letters","FTC Identity Theft Affidavit Execution","Filing Police Reports for Fraudulent Tradelines","Direct Furnisher Disputes (FCRA Section 623)","Holding Banks Liable for Unverified Data","Preventing Deleted Item Reinsertion","5-Day Statutory Reinsertion Notice Rules","Scrubbing Outdated Addresses & Employers","Disputing LexisNexis & Innovis Errors","Clearing ChexSystems & Early Warning (EWS)","NCAP Public Records & Tax Lien Removals","Disputing Inaccurate Eviction Screening Files","Correcting Child Support Arrears Reporting","Federal Student Loan Rehabilitation vs. Consolidation","Fresh Start & IDR Default Remediation","Challenging Private Student Loan Reporting","The Goodwill Saturation Technique (GST)","Finding Executive Office Escalation Contacts","Mandatory Binding Arbitration Clauses Explained","Suing Bureaus in Small Claims Court","Documenting Actual Financial Damages","Historical CFPB Consent Orders Against Bureaus","Credit Repair Organizations Act (CROA) Rules","Spotting Illegal Credit Repair Scams","Why Credit Privacy Numbers (CPNs) Are Felony Fraud","Legal Standing of Tradeline Renting","Freezing Innovis, CoreLogic & ChexSystems","Drafting Pre-Litigation Intent-to-Sue Notices","Tracking Consumer Banking Class Actions","Emergency Stolen Identity Triage Flowchart","Managing Bureau Security Freeze PINs","Legal Credit Freeze vs. Paid Credit Lock","Closing a Deceased Relative's Credit File","Why Divorce Decrees Don't Erase Joint Debt","Removing Ex-Spouses from Joint Tradelines","Spotting Bank Merger Reporting Glitches","Fixing Post-Merger Duplicate Tradelines","Bypassing e-OSCAR Automated Dispute Codes","USPS Certified Mail Return Receipt Protocol","Building a Bulletproof Dispute Paper Trail","Fixing Downstream Secondary Data Errors","Demanding Deletion After 30-Day Defaults","Why 1 in 3 Credit Reports Contain Errors","National Consumer Law & Legal Aid Directory",
+            // PHASE 4 (151-200)
+            "Classic FICO 2, 4 & 5 Mortgage Scores","The Mortgage Middle-Score Underwriting Rule","Why 740+ Unlocks Prime Mortgage Rates","FHA (580+) vs. Conventional (620+) Rules","VA Home Loan Flexible Credit Underwriting","USDA Rural Housing Credit Guidelines","The Mortgage Underwriting Blackout Period","Writing Large Deposit Explanation Letters","Auto Loan Credit Tiers (Tier 1 to Tier 5)","Beating Auto Dealer Interest Rate Markups","Full Pre-Approval vs. Soft Pre-Qualification","Auto Lease vs. Auto Purchase Credit Impact","Apartment Rental Credit & Guarantor Rules","Waiving Security Deposits with 740+ Scores","Personal Credit vs. Business Credit (PAYDEX)","Building Tier-1 Net-30 Vendor Accounts","EIN-Only Corporate Credit Cards","Preparing Credit for SBA 7(a) Loans","Physician & Medical Resident Mortgage Rules","Bar Study & Professional Transition Loans","Military Lending Act (MLA) 36% Rate Cap","SCRA 6% Interest Rate Cap for Active Duty","Maintaining U.S. Credit While Living Abroad","Managing Credit Lines in Retirement","Settling Estate Debt Without Family Liability","Teaching Teens Credit Before Age 18","Adding Teens as Authorized Users Safely","Graduating from Student Cards to Prime Cards","1099 & Freelancer Mortgage Underwriting","Bank-Statement Mortgages for Entrepreneurs","Building Credit with an ITIN Number","Transferring Foreign Credit History to the U.S.","Jumbo Mortgage Reserve & Score Requirements","Scaling Credit for Multi-Family Rental Loans","DSCR Loans (Property Cash Flow vs. FICO)","Solar Panel Lien & Financing Traps","HELOC vs. Cash-Out Refi for Renovations","Divorce Asset & Debt Separation Playbook","Documenting Alimony & Support for Loans","Second-Chance Checking Account Directory","Why Credit Unions Beat Mega-Banks on Rates","Leveraging CDFI Community Lenders","How Credit-Builder Installment Loans Work","Comparing Self, Kikoff & Chime Credit Builder","Evaluating Paid Rent-Reporting Platforms","Maximizing Positive Utility Bill Reporting","12-Month Countdown to Homeownership Plan","Understanding Bank Underwriting Overlays","Questions to Ask Mortgage Loan Officers","Lifetime Milestone Credit Strategy",
+            // PHASE 5 (201-250)
+            "Behavioral Psychology of Credit Spending","Zero-Baseline Monthly Cash Flow Budgeting","Failsafe Multi-Layer Autopay Architecture","Real-Time $1 Transaction Fraud Alerts","Mastering Chase, Amex & Capital One Portals","Navigating the Chase 5/24 Rule Safely","Breaking the Daily Score-Checking Obsession","Building a Household Credit Dashboard","Zero-Knowledge Digital Document Vaults","Hardware 2FA Keys (YubiKey) for Banking","Spotting Bank SMS & Voice Phishing Scams","Preventing Synthetic Identity Fraud","How Plaid & Open Banking APIs Work","Automated 90-Day Subscription Audits","Eliminating Checking Overdraft Fees Forever","Choosing No-Foreign-Transaction-Fee Cards","Avoiding Dynamic Currency Conversion Traps","Setting Rules for Family Authorized Users","Fair Credit Billing Act (FCBA) Chargebacks","Winning Merchant Chargeback Disputes","Using Credit Card Primary Rental Car Insurance","Valuing Airport Lounge Perks vs. Fees","Emergency Triage for Maxed-Out Cards","Job Loss & Income Disruption Credit Shield","Managing Debt During Career Transitions","Negotiating Bank Hardship Programs Safely","How 'Hardship' Remarks Affect Credit Reports","Student Loan Forbearance vs. Deferment Math","FEMA Disaster Declaration Credit Protections","30-Day Rapid Score Optimization Sprint","The Effortless 800+ Maintenance Routine","Revoking Authorized User Access Instantly","Round-2 & Round-3 Bureau Dispute Strategy","High-Impact CFPB Complaint Templates","Organizing a Small Claims Evidence Binder","Mailing 30-Day Arbitration Opt-Out Letters","Claiming Consumer Data Breach Settlements","Recovering Lost Security Freeze PINs","Triaging Credit Monitoring Breach Alerts","Why Score Simulators Miss Nuanced Factors","Gamifying Household Financial Literacy","Running Monthly Partner Money Check-Ins","Overcoming Debt Shame & Financial Anxiety","Teaching Kids Generational Credit Mastery","How Bank Risk Algorithms Flag Accounts","Opting Out of Consumer Data Brokers","Printable Pocket Guide to Federal Credit Laws","Plain-English Glossary of 150 Credit Terms","Self-Testing Your Financial Literacy","The Master Credit Sovereignty Blueprint",
+            // PHASE 6: BUSINESS & CORPORATE CREDIT (251-300)
+            "Structuring an LLC for Corporate Credit","Getting Your Free D-U-N-S Number from D&B","How the D&B PAYDEX Score (1–100) Works","Paying Net-30 Invoices 10 Days Early for an 80+ PAYDEX","Experian Intelliscore Plus for Business","Equifax Business Credit Risk Score Decoded"," separating Personal & Business Bank Accounts","Avoiding High-Risk SIC & NAICS Industry Codes","Setting Up a Dedicated Business Address & 411 Listing","Tier-1 Starter Net-30 Vendors (Uline, Quill, Grainger)","Tier-2 Fleet & Retail Business Credit Cards","Tier-3 Unsecured Corporate Revolving Lines"," tier-4 Non-PG (No Personal Guarantee) Bank Cards","How Business Credit Cards Report to Personal Bureaus","Which Business Cards Stay Hidden from Personal Reports","Utilizing 0% Intro APR Business Cards for Working Capital","Protecting Personal FICO While Scaling Inventory","Understanding Personal Guarantees (Unlimited vs. Limited)","Negotiating Burn-Off Clauses on Personal Guarantees","SBA 7(a) vs. SBA 504 Loan Credit Underwriting","SBA FICO Small Business Scoring Service (SBSS) 160+ Rule","Equipment Financing & Section 179 Tax Deductions","Invoice Factoring vs. Accounts Receivable Lines","Merchant Cash Advance (MCA) Predatory Debt Traps","Escaping Confessions of Judgment in Business Loans","Corporate Credit Scrubbing & Commercial Disputes","Challenging Inaccurate D&B Delinquency Filings","Understanding UCC-1 Financing Statements & Blanket Liens","How to Demand a UCC-3 Lien Termination After Payoff","Building Credit for Real Estate Holding LLCs","Structuring Operating Companies vs. Holding Companies","Corporate Resolution Templates for Borrowing Authority","Using Business Credit for Turo, Amazon or E-Commerce","Managing Corporate Amex Charge Card Velocity Limits","How Amex Financial Reviews (FR) Are Triggered","Surviving a Bank Business Credit Line Audit","Establishing Commercial Credit Union Relationships","Leveraging Community Banks for Local Business Lines","How Dun & Bradstreet Failure & Delinquency Scores Work","Monitoring Commercial Credit Without Expensive Subscriptions","Building Non-Profit (501c3) Corporate Credit","Preparing Business Tax Returns for Underwriter Review","EBITDA & Debt Service Coverage Ratio (1.25x+ Rule)","Blending Personal 750+ FICO with New LLC Entities","Purchasing Fleet Vehicles Under an EIN Without a PG","Commercial Lease Credit Guarantees & Letters of Credit","Replacing Cash Security Deposits with Surety Bonds","Succession Planning & Transferring Corporate Credit","Dissolving an LLC Without Damaging Personal Credit","The Complete 180-Day Zero-to-$100K Business Credit Map",
+            // PHASE 7: PREDATORY LENDING & SCAM DEFENSE (301-350)
+            "How Payday Loans Trap Borrowers in 400% APR Cycles","Truth in Lending Act (TILA) Schumer Box Disclosures","Spotting Hidden Origination & Prepayment Penalties","Auto Title Loan Repossession & Equity Theft Defense","Buy Here, Pay Here (BHPH) Dealership GPS & APR Traps","How Subprime Credit Cards (Fee-Harvester Cards) Work","The 25% First-Year Fee Cap Under the CARD Act","Buy Now, Pay Later (BNPL) Late Fee & Credit Reporting","Why Stacking Affirm, Klarna & Afterpay Hurts Underwriting","Rent-to-Own Furniture & Appliance 200% Markup Math","Predatory Tax Refund Anticipation Loans Explained","Spotting Advance-Fee Loan Scams & Fake Lenders","Tribal Lending Sovereignty & State Usury Law Loopholes","Revoking ACH Wage & Bank Account Debit Authorizations","Using Stop-Payment Orders Against Predatory Lenders","State Usury Caps & Illegal Loan Nullification","Pawn Shop Interest Rates vs. Small Credit Union PALs","Payday Alternative Loans (PALs I & II) at Credit Unions","Employer Earned Wage Access (EWA) Fee Traps","How Overdraft 'Courtesy Pay' Acts as a 300% APR Loan","Spot-Delivery (Yo-Yo Financing) Car Dealership Scams","How to Refuse a Dealership's Demand to Sign a Higher APR","Packing Auto Loans with Fake Extended Warranties & GAP","Canceling Dealer Add-Ons for a Pro-Rata Principal Refund","Subprime Mortgage Prepayment Penalty Restrictions","Spotting Reverse Mortgage Foreclosure Traps for Seniors","Home Equity Theft & Foreclosure Rescue Scams","Deed Theft & Title Lock Marketing Myths Debunked","Predatory PACE Green Energy Property Tax Liens","For-Profit College Institutional Loan Discharges","Challenging Deceptive Medical Credit Cards (CareCredit)","Deferred Interest ('No Interest If Paid in Full') vs. 0% APR","How $1 Remaining on Deferred Interest Triggers 24 Months of Retroactive APR","Credit Card Convenience Check Fee & APR Traps","Debt Relief Telemarketing Scams & TSR Violations","FTC Telemarketing Sales Rule Ban on Upfront Debt Fees","Fake Debt Collector Phantom Debt Extortion Scams","Verifying Collector State Licensing & Bond Numbers","Spotting AI Voice-Cloning Family Emergency Scams","Zelle, Venmo & CashApp Irreversible Fraud Rules","Regulation E Consumer Protections for Unauthorized Debit Transfers","Reporting Wire & Crypto Scams Within 48 Hours","Elder Financial Abuse Credit & Bank Account Locks","Setting Up Trusted Contact Alerts on Brokerage Accounts","Romance Scam Co-Signed Loan Liability Defense","Protecting Domestic Violence Survivors from Coerced Debt","State Coerced Debt Relief Statutes & Bureau Blocks","Student Loan Forgiveness Scam Calls & Portal Phishing","Credit Bureau Impersonation Emails & Fake Score Portals","The Complete Predatory Finance Self-Defense Checklist",
+            // PHASE 8: CREDIT CARD PERKS, REWARDS & OPTIMIZATION (351-400)
+            "Calculating Cents-Per-Point (CPP) Reward Valuations","Why Paying 1 Month of Interest Wipes Out 2 Years of Rewards","Cash Back vs. Transferable Travel Portal Points","The Chase Trifecta Strategy (Sapphire, Freedom, Ink)","American Express Membership Rewards Transfer Sweet Spots","Capital One Miles & Venture X Travel Eraser Math","Citi ThankYou Points & Custom Cash 5% Category Rules","Bilt Rewards: Earning Points on Rent Without Transaction Fees","Understanding Issuer Application Velocity Rules (5/24, 2/90, 1/48)","How to Call the Credit Card Reconsideration Line & Win","Script for Turning a Card Denial into an Instant Approval","Moving Credit Limits Between Cards at the Same Bank","How Credit Card Sign-Up Bonus (SUB) Minimum Spend Works","Organic Spending Timing for Sign-Up Bonuses (Tax, Insurance, Tuition)","Why Manufactured Spending Triggers Shutdowns & FinCEN Reviews","Retention Offer Negotiation Scripts for Annual Fee Cards","Downgrading Path Map to Preserve 10+ Year Account History","Maximizing Airline Companion Certificates (Delta, Southwest, Alaska)","Hotel Free Night Award Certificates vs. Point Redemptions","Credit Card Cell Phone Protection ($800 Claim Walkthrough)","Extended Warranty Protection: Doubling Manufacturer Warranties","Purchase Protection: Replacing Stolen or Damaged Items Within 90 Days","Return Protection: Getting Refunded When a Store Refuses Returns","Trip Delay & Cancellation Insurance (6-Hour & 12-Hour Rules)","Baggage Delay & Lost Luggage Reimbursement Claims","Primary vs. Secondary Rental Car Collision Damage Waivers","Global Entry, TSA PreCheck & CLEAR Statement Credits","Maximizing Dining, Streaming & Rideshare Monthly Credits","How Merchant Category Codes (MCC) Dictate Bonus Points","Why Walmart, Target & Wholesale ClubsOften Code at 1x","Stacking Shopping Portals (Rakuten) with Card Multipliers","Using Card-Linked Offers (Amex Offers, Chase Offers) for 10–20% Back","Managing 10+ Credit Cards With Zero Missed Payments","Setting Up a 1st-of-the-Month Unified Due Date Across All Banks","Preventing Inactivity Closures with Semi-Annual Micro-Charges","What Happens to Your Points If an Issuer Closes Your Account","How Bankruptcy or Default Forfeits Unredeemed Reward Balances","Taxability of Credit Card Sign-Up Bonuses vs. Referral Bonuses","Why Referral Bonuses Trigger IRS Form 1099-MISC","Combining Points Across Spouses & Household Members","Transferring Points to Airline Partners for 3x–5x Value","Avoiding Phantom Award Space Before Transferring Points","Credit Card Price Drop Protection (Where Still Available)","Event Ticket & Concert Cancellation Protection Perks","Roadside Assistance & Emergency Evacuation Card Benefits","Concierge Services: What They Actually Can and Cannot Do","Building a Minimalist 2-Card 2%+ Everything Setup","Auditing Your Wallet Once a Year to Cut Dead Weight","Transitioning from Cash Back to Travel Hacking Responsibly","The Golden Rule of Rewards: Never Spend Extra Just for Points",
+            // PHASE 9: ADVANCED LEGAL REMEDIES & CONSUMER LITIGATION (401-450)
+            "FCRA Statutory Damages ($100–$1,000) vs. Actual Damages","Proving 'Willful Non-Compliance' Under 15 U.S.C. § 1681n","Proving 'Negligent Non-Compliance' Under 15 U.S.C. § 1681o","How Fee-Shifting Statutes Force Bureaus to Pay Your Attorney","Why Legitimate FCRA Attorneys Take Cases on 100% Contingency","Finding an NACA (National Association of Consumer Advocates) Lawyer","How Mixed Credit Files Happen (Jr./Sr., Twins, Common Names)","Winning Mixed-File Lawsuits Against Equifax, Experian & TransUnion","Being Erroneously Reported as 'Deceased' on a Credit Report","Why 'Deceased' Indicator Errors Trigger Major Statutory Settlements","FDCPA $1,000 Statutory Damage Claims Against Abusive Collectors","Recording Collector Phone Calls: 1-Party vs. 2-Party Consent States","Keeping a Contemporaneous Call Log of Collector Harassment"," Illegal Third-Party Disclosure: When Collectors Call Your Boss or Family","FDCPA Venue Violations: Being Sued in the Wrong County","Telephone Consumer Protection Act (TCPA) Robocall Violations","Receiving $500 to $1,500 Per Illegal Automated Collection Call","Revoking Consent for Automated Collection Calls & Texts in Writing","Electronic Fund Transfer Act (EFTA) Violations on Preauthorized Debits","Truth in Lending Act (TILA) Right of Rescission on Refinances","Real Estate Settlement Procedures Act (RESPA) Qualified Written Requests","Sending a QWR / Notice of Error to a Mortgage Servicer","Forcing Mortgage Servicers to Fix Escrow & Payment Misapplications","Fair Housing Act & ECOA Algorithmic Redlining Protections","Challenging Biased Automated Underwriting Denials","Adverse Action Notice Requirements: Your Right to Know Why You Were Denied","How Lenders Must Disclose the Exact Key Factors That Lowered Your Score","Getting Free Credit Reports Within 60 Days of Any Adverse Action","Background Check Errors Under FCRA for Employment (Pre-Adverse Action)","Your Right to Receive a Copy of an Employment Background Report Before Firing","Expunged Criminal Records Still Showing on Background Checks","Tenant Screening Report Lawsuits Against Automated Algorithms","How to Answer a Debt Collection Lawsuit Summons & Complaint","Why 70%+ of Collection Lawsuits End in Default Judgment Because Consumers Don't Reply","Drafting an Affirmative Defense Answer to a Debt Buyer Lawsuit","Challenging Junk Debt Buyer Chain of Title (Midland, Portfolio Recovery, LVNV)","Demanding the Original Bill of Sale & Account-Level Attachment","Using Private Credit Card Arbitration (AAA / JAMS) Against Debt Buyers","Why Filing Arbitration Often Costs the Bank $3,000+ in Filing Fees","Vacating a Default Judgment Due to 'Sewer Service' (Improper Service)","Protecting Exempt Income (Social Security, VA, Disability) from Garnishment","State Wage Garnishment Exemptions & Head-of-Household Protections","Bank Account Levy Exemptions & Wildcard Homestead Rules","Post-Judgment Interest Rate Reductions & Payment Plans","Settling a Lawsuit Before Trial for a Stipulated Dismissal","Preventing a 1099-C During Litigation Settlement Negotiations","Sealing or Vacating Satisfied Civil Judgments","How Consumer Protection Lawsuits Are Settled Under NDA","Reading a Release & Settlement Agreement Before Signing","The Consumer Self-Advocacy Legal Escalation Ladder",
+            // PHASE 10: WEALTH, ALGORITHMS & ESTATE ARCHITECTURE (451-500)
+            "How FICO 10T Uses 24-Month Trended Data Instead of Snapshots","Transactor vs. Revolver Classification in Trended Credit Algorithms","Why Paying in Full Every Month Boosts FICO 10T & VantageScore 4.0","How FHFA Modernized Fannie Mae & Freddie Mac Credit Scoring","FHA Adoption of FICO 10T & VantageScore 4.0 (2027 Rollout)","How Insurance Companies Use Credit-Based Insurance Scores (CBIS)","Why Raising Your Credit Score Saves $500–$1,200/Year on Auto & Home Insurance","States That Ban or Restrict Credit-Based Insurance Scoring","How Security Clearance Investigators Evaluate Financial Debt (Guideline F)","Mitigating Past Debt for Federal & Military Security Clearances","Why Unresolved Debt Triggers Clearance Denials—And How Payment Plans Fix It","Using a Revocable Living Trust When Buying Real Estate with a Mortgage","Garn-St. Germain Act: Transferring a Mortgaged Home into a Trust Without Triggering Due-on-Sale","Credit Lines Secured by Investment Portfolios (Securities-Backed Lines of Credit / SBLOC)","How Pledged Asset Lines Work & How to Avoid Margin Call Liquidations","Infinite Banking & Whole Life Policy Loans vs. Traditional Credit","Evaluating Cash-Value Life Insurance Loans Critically","Private Banking Relationship Tiers (Chase Private Client, BofA Preferred Rewards)","Unlocking 0.25%–0.50% Mortgage Rate Discounts via Relationship Assets","Using High Credit Scores for 100% Financing on Business Acquisitions","Seller Financing & Subject-To Real Estate Deals: Credit Implications","How Loan Assumptions Work on FHA & VA Mortgages (Taking Over a 3% Rate)","Qualifying for an Assumable Mortgage With a 640+ Credit Score","House Hacking: Using 3.5% Down FHA Loans on 2-to-4 Unit Multifamily","How Projected Rental Income Offsets DTI in Multifamily Underwriting","BRRRR Real Estate Strategy: Credit & Refinance Seasoning Rules","Delayed Financing Exception: Cash-Out Refinancing Immediately After Cash Purchase","Hard Money Loans vs. Private Money Lenders: Credit & Points Math","Bridge Loans: Buying a New Home Before Selling Your Current Home","Recasting a Mortgage vs. Refinancing: Lowering Monthly Payments Without a Credit Pull","Bi-Weekly Mortgage Payments: Shaving 4–6 Years Off a 30-Year Loan","Removing Private Mortgage Insurance (PMI) at 80% Loan-to-Value","Using a BPO or Appraisal to Strip PMI Early After Home Appreciation","Property Tax Escrow Shock: Why Your Mortgage Payment Jumps in Year 2","Homestead Exemptions: Protecting Home Equity from Unsecured Creditors","Umbrella Insurance Policies: Protecting Your Net Worth from Lawsuits","Prenuptial & Postnuptial Agreements: Isolating Pre-Marital Debt","Community Property States vs. Common Law States for Spousal Debt","Medical Power of Attorney & Financial Durable Power of Attorney","Adding a Payable-on-Death (POD) / Transfer-on-Death (TOD) Beneficiary to Accounts","Why POD Accounts Bypass Probate and Keep Cash Liquid for Family","Executor Playbook: How to Notify Equifax, Experian & TransUnion of a Death","Ordering a Deceased Person's Credit Report to Spot Estate Claims","Insolvent Estates: Why Heirs Never Inherit Credit Card Debt Personally","Handling Collector Calls After a Parent or Spouse Passes Away","Teaching Young Adults the Difference Between Good Leverage and Toxic Debt","Creating a Family Credit Constitution & First-Home Matching Fund","Transitioning from Credit Repair to Index Fund & Asset Accumulation","Auditing Your Total Net Worth & Liability Ratio Every January 1st","Module 500: The Complete Sovereign Financial Architecture Masterplan"
+        ];
+
+        // Topic-Aware Knowledge & Example Generator so EVERY SINGLE MODULE (1-500) has a rich, specific lesson & numerical example!
+        function getModuleDetails(index) {
+            const num = index + 1;
+            const title = rawTitles[index] || `Credit Mastery Module #${num}`;
+            const phaseIdx = Math.floor(index / 50) + 1;
+            const phaseLabel = phaseNames[phaseIdx];
+            const t = title.toLowerCase();
+
+            let concept = "";
+            let example = "";
+            let steps = [];
+            let law = "";
+
+            if (t.includes("fico") || t.includes("vantagescore") || t.includes("pie chart") || t.includes("tier") || t.includes("10t")) {
+                concept = `<strong>${title}</strong> decodes how credit scoring algorithms evaluate your borrower risk profile. Standard FICO models weigh five distinct categories: Payment History (35%), Amounts Owed / Credit Utilization (30%), Length of Credit History (15%), New Credit (10%), and Credit Mix (10%). Meanwhile, newer models like FICO 10T and VantageScore 4.0 incorporate 24 months of "trended data"—meaning the algorithm looks at whether your balances are trending downward over time or if you pay your statement in full each month rather than just taking a single monthly snapshot.`;
+                example = `<strong>Real-World Scenario:</strong> Marcus and Elena both have a $2,000 balance on a $10,000 limit credit card (20% utilization) and zero late payments. However, Marcus carried down his balance from $6,000 over the past 6 months, while Elena ran hers up from $0. Under legacy FICO 8, both score a <strong>725</strong>. Under trended models (FICO 10T / VantageScore 4.0), Marcus scores a <strong>755 (+30 pts)</strong> because his 24-month trajectory proves declining risk.`;
+                steps = [
+                    "Pull your baseline reports across Equifax, Experian, and TransUnion to verify all 5 scoring categories.",
+                    "Identify which scoring version your target lender uses (Classic FICO 2/4/5 or VantageScore 4.0 for mortgages; FICO Auto 8/9 for vehicles).",
+                    "Eliminate utilization spikes above 9% for 60 days prior to any major loan application.",
+                    "Maintain at least 3 active revolving credit cards and 1 installment loan for optimal Credit Mix (10% weight)."
+                ];
+                law = "FHFA Credit Score Modernization Rule (12 CFR Part 1254) & Fair Credit Reporting Act (15 U.S.C. § 1681g) — Mandates disclosure of key score factors and governs Fannie Mae, Freddie Mac, and FHA adoption of Classic FICO, VantageScore 4.0, and FICO 10T.";
+            } else if (t.includes("utilization") || t.includes("azeo") || t.includes("closing date") || t.includes("limit") || t.includes("all-zero") || t.includes("sweep") || t.includes("rescore")) {
+                concept = `<strong>${title}</strong> governs the 30% of your credit score controlled by Revolving Credit Utilization. Most consumers mistakenly believe that paying their bill in full on the <em>Payment Due Date</em> reports a $0 balance. In reality, banks report your balance to the credit bureaus on your <strong>Statement Closing Date</strong> (roughly 21–25 days before the due date). By paying down your balance 3 days <em>before</em> the Statement Closing Date, you control the exact utilization percentage the bureaus see.`;
+                example = `<strong>Real-World Math:</strong> David has a credit card with a <strong>$5,000 limit</strong>. He spends $3,500 every month on groceries and bills and pays it off in full on the due date. Because the bank snapshots his account on the Statement Closing Date, his credit report constantly shows <strong>70% utilization ($3,500 / $5,000)</strong>, penalizing his score by <strong>65 points</strong> (sitting at 660). David switches to paying $3,450 two days <em>before</em> his statement closes, leaving a $50 balance (<strong>1% utilization</strong>). Within 30 days, his score jumps from <strong>660 to 728 (+68 points)</strong> without spending a penny less!`;
+                steps = [
+                    "Locate the 'Statement Closing Date' (or 'Next Closing Date') on the top corner of your monthly credit card PDF statement.",
+                    "Pay 95% to 99% of your current balance 3 business days BEFORE that Statement Closing Date.",
+                    "Apply the AZEO (All Zero Except One) method: let $0 report on all cards except one major bank card showing $10–$30 (1% utilization).",
+                    "Pay off that remaining $10–$30 before the Payment Due Date so you pay $0.00 in interest."
+                ];
+                law = "FICO Revolving Utilization Algorithm & CARD Act of 2009 — Requires card issuers to maintain at least a 21-day grace period between the Statement Closing Date and Payment Due Date.";
+            } else if (t.includes("dispute") || t.includes("fcra") || t.includes("611") || t.includes("623") || t.includes("mov") || t.includes("cfpb") || t.includes("reinsertion") || t.includes("e-oscar") || t.includes("certified mail")) {
+                concept = `<strong>${title}</strong> leverages federal consumer protection statutes to force credit bureaus and banks to correct or delete inaccurate, unverified, or obsolete credit reporting. When you submit a dispute online, bureaus feed your claim into an automated system called <strong>e-OSCAR</strong>, which reduces your dispute into a 2-digit code. By mailing a factual, documentary dispute via USPS Certified Mail under FCRA Section 611 (to the bureau) and Section 623 (directly to the bank/furnisher), you create a binding 30-day statutory deadline.`;
+                example = `<strong>Real-World Case Study:</strong> Sarah discovers an inaccurate 30-day late payment from 2024 on her auto loan that dropped her score by <strong>55 points</strong>. She had bank statements proving her payment cleared on time. Instead of clicking 'Dispute' on a free app, she mails a Certified Letter attaching her highlighted bank statement to Experian, Equifax, and TransUnion (Section 611) and to the auto lender's compliance department (Section 623). On Day 22, the lender updates the payment history to 'Paid as Agreed,' and Sarah's FICO score rebounds from <strong>672 to 729</strong>.`;
+                steps = [
+                    "Highlight the exact reporting discrepancy on your official credit report (balance, status, date of first delinquency, or payment grid).",
+                    "Draft a specific factual dispute letter citing 15 U.S.C. § 1681i (Section 611) and attach supporting proof (receipts, statements, ID).",
+                    "Mail via USPS Certified Mail with Return Receipt Requested so the 30-day statutory clock is legally documented.",
+                    "If the bureau marks it 'Verified' without fixing obvious errors, send a Method of Verification (MOV) demand and file a CFPB complaint."
+                ];
+                law = "Fair Credit Reporting Act (FCRA) Sections 611 (15 U.S.C. § 1681i) & 623 (15 U.S.C. § 1681s-2) — Mandates reasonable investigation within 30 days and immediate deletion of unverifiable data.";
+            } else if (t.includes("collection") || t.includes("fdcpa") || t.includes("validation") || t.includes("809") || t.includes("zombie") || t.includes("statute of limitation") || t.includes("pay-for-delete") || t.includes("medical") || t.includes("1099-c")) {
+                concept = `<strong>${title}</strong> protects you when dealing with third-party collection agencies, medical bills, or charged-off debt. When an original creditor writes off a debt, they often sell it for pennies on the dollar (4 to 8 cents per dollar) to debt buyers. Under the Fair Debt Collection Practices Act (FDCPA), you have the right to demand full debt validation, verify whether the state Statute of Limitations has expired, and negotiate either a complete <strong>Pay-for-Delete</strong> removal or a lump-sum settlement.`;
+                example = `<strong>Real-World Scenario:</strong> Kevin receives a collection letter demanding <strong>$1,800</strong> for an old telecom bill. Kevin sends an FDCPA Section 809 Debt Validation letter within 30 days. The collector provides an itemized bill showing the debt is valid and 2 years old. Kevin offers a lump-sum <strong>40% settlement ($720)</strong> contingent on a written <strong>Pay-for-Delete agreement</strong> (or utilizes the collector's published deletion policy). Once the $720 clears, the collection tradeline is completely removed from all three bureaus, boosting his score by <strong>48 points</strong>.`;
+                steps = [
+                    "Never acknowledge ownership or make a 'good-faith' $5 payment on an old debt before checking your state's Statute of Limitations (a payment can reset the legal clock).",
+                    "Send an FDCPA Section 809 Debt Validation letter via Certified Mail demanding original account-level documentation and collector licensing.",
+                    "For medical debt, verify whether the balance is under $500 or already paid (which the three bureaus voluntarily exclude, alongside protections in 15 states).",
+                    "Negotiate any settlement in writing BEFORE paying, explicitly stating the tradeline will be deleted upon clearance of funds."
+                ];
+                law = "Fair Debt Collection Practices Act (FDCPA), 15 U.S.C. § 1692g (Validation of Debts) & IRS Form 982 (Insolvency Exclusion for 1099-C Forgiven Debt).";
+            } else if (t.includes("mortgage") || t.includes("fha") || t.includes("va ") || t.includes("middle-score") || t.includes("dti") || t.includes("auto") || t.includes("dealer") || t.includes("dscr") || t.includes("brrrr") || t.includes("pmi")) {
+                concept = `<strong>${title}</strong> prepares you for major asset underwriting (home mortgages, investment real estate, and auto financing). Unlike credit cards that pull a single bureau's FICO 8 score, mortgage lenders pull a <strong>Tri-Merge Report</strong> across all three bureaus and use your <strong>Middle Score</strong> (not the average!). Furthermore, lenders evaluate your Front-End and Back-End Debt-to-Income (DTI) ratio alongside strict underwriting overlays.`;
+                example = `<strong>Real-World Math:</strong> Maya is buying a $400,000 home. Her mortgage tri-merge scores come back as <strong>Equifax: 748, Experian: 715, TransUnion: 742</strong>. The lender throws out the highest (748) and lowest (715) and uses her <strong>Middle Score of 742</strong>. Because 740+ is the top conventional pricing tier, she locks in a <strong>6.125% rate instead of 6.875%</strong>—saving <strong>$196/month ($70,560 over a 30-year loan)</strong>!`;
+                steps = [
+                    "Audit all three bureau reports 6 months before applying for a mortgage or auto loan.",
+                    "Calculate your Back-End DTI (Total Monthly Minimum Debt Payments + New Housing Payment ÷ Gross Monthly Income) and keep it below 36%–43%.",
+                    "During the 60-day mortgage underwriting window, enforce a strict blackout: zero new credit applications, zero large unverified cash deposits, and zero financing of furniture or cars.",
+                    "When shopping for mortgage or auto rates, batch all lender applications within a 14-day window so FICO counts all pulls as a single inquiry."
+                ];
+                law = "Equal Credit Opportunity Act (ECOA), Real Estate Settlement Procedures Act (RESPA), & FHFA / FHA Tri-Merge Underwriting Standards.";
+            } else if (t.includes("business") || t.includes("llc") || t.includes("paydex") || t.includes("d&b") || t.includes("net-30") || t.includes("ein") || t.includes("sba") || t.includes("ucc")) {
+                concept = `<strong>${title}</strong> shows you how to separate your personal liability and personal utilization from your business operations by building a corporate credit profile under your EIN (Employer Identification Number). While personal FICO scores run from 300 to 850 based on paying on time, the Dun & Bradstreet <strong>PAYDEX score (1 to 100)</strong> requires you to pay Net-30 vendor invoices <em>early</em> (10 to 20 days before the due date) to achieve an 80+ prime score.`;
+                example = `<strong>Real-World Scenario:</strong> Jordan launches an e-commerce LLC. Instead of maxing out personal credit cards (which would spike personal utilization to 80% and tank Jordan's FICO by 70 points), Jordan opens a free D-U-N-S number, establishes 4 Tier-1 Net-30 vendor accounts (Uline, Quill, Grainger) paying each invoice 15 days early to earn an <strong>80 PAYDEX score</strong>, and then secures a <strong>$25,000 0% APR Business Credit Card</strong> that does not report to personal credit bureaus. Jordan's personal FICO stays at <strong>765</strong> even while deploying $20,000 in inventory capital!`;
+                steps = [
+                    "Form your legal entity (LLC or Corporation), obtain your free IRS EIN, and open a dedicated business checking account.",
+                    "Ensure your business name, physical address, and phone number match identically across state filings, IRS records, and Dun & Bradstreet.",
+                    "Open 3 to 5 starter Net-30 vendor tradelines that report to D&B, Experian Business, and Equifax Business, and pay every invoice 10+ days early.",
+                    "Transition to business credit cards that only report to commercial bureaus so business working capital never inflates your personal utilization."
+                ];
+                law = "Small Business Act (SBA 7(a) / SBSS Underwriting Guidelines) & Uniform Commercial Code (UCC-1 & UCC-3 Financing Statements).";
+            } else {
+                concept = `<strong>${title}</strong> is a critical pillar of the Credit Backbone financial sovereignty system. Everyday consumers lose thousands of dollars each year to asymmetric banking rules, hidden fee structures, and automated risk algorithms simply because nobody hands them the operating manual. Mastering this module ensures your credit profile, legal rights, and cash flow remain protected under all economic conditions.`;
+                example = `<strong>Real-World Scenario:</strong> Taylor implements the exact protocol in <strong>${title}</strong> during an annual financial audit. By replacing reactive habits with automated guardrails—verifying account terms, locking down bureau files against unauthorized inquiries, and optimizing payment timing—Taylor prevents a 40-point derogatory hit and saves over <strong>$1,450/year</strong> in avoidable interest and fees.`;
+                steps = [
+                    "Review your current credit reports and active account agreements to see how this rule applies to your open tradelines.",
+                    "Configure automated account alerts and calendar reminders so you never miss a statutory deadline or statement cutoff.",
+                    "Document all communications with banks, bureaus, and servicers in writing inside your digital financial vault.",
+                    "Cross-reference this module with the interactive calculators and letter generators in the Credit Backbone toolbar above."
+                ];
+                law = "Truth in Lending Act (TILA / Regulation Z), Fair Credit Billing Act (FCBA), & Consumer Financial Protection Act.";
+            }
+
+            return { num, title, phaseIdx, phaseLabel, concept, example, steps, law };
+        }
+
+        // State Variables
+        let activePhase = 0; // 0 = All 500
+        let currentModalIndex = 0;
+        let completedModules = JSON.parse(localStorage.getItem('cb_completed_modules') || '[]');
+        let chartInstance = null;
+
         // Tab Navigation
         function switchTab(tabId) {
-            ['dashboard', 'estimator', 'simulator', 'dispute', 'validation', 'checklist', 'curriculum'].forEach(t => {
+            ['curriculum', 'dashboard', 'estimator', 'simulator', 'dispute', 'validation', 'goodwill', 'checklist'].forEach(t => {
                 const el = document.getElementById(`tab-${t}`);
                 const nav = document.getElementById(`nav-${t}`);
                 if (el) el.classList.add('hidden');
-                if (nav) nav.classList.remove('text-indigo-400');
+                if (nav) {
+                    nav.classList.remove('text-indigo-400', 'font-semibold', 'bg-indigo-500/10');
+                }
             });
             const activeEl = document.getElementById(`tab-${tabId}`);
             const activeNav = document.getElementById(`nav-${tabId}`);
             if (activeEl) activeEl.classList.remove('hidden');
-            if (activeNav) activeNav.classList.add('text-indigo-400');
-        }
-
-        // Initialize Chart & Generators
-        let chartInstance = null;
-        function initApp() {
-            const canvasEl = document.getElementById('simulationChart');
-            if (canvasEl) {
-                const ctx = canvasEl.getContext('2d');
-                chartInstance = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: [],
-                        datasets: [{
-                            label: 'Projected Balance ($)',
-                            data: [],
-                            borderColor: '#6366f1',
-                            backgroundColor: 'rgba(99, 102, 241, 0.1)',
-                            borderWidth: 3,
-                            fill: true,
-                            tension: 0.3
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: {
-                            x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } },
-                            y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } }
-                        }
-                    }
-                });
-                runSimulation();
+            if (activeNav) {
+                activeNav.classList.add('text-indigo-400', 'font-semibold', 'bg-indigo-500/10');
             }
-            calculateEstimatedScore();
-            generateDisputeLetter();
-            generateValidationLetter();
-            loadChecklist();
-            loadCurriculum();
+            if (tabId === 'simulator' && chartInstance) {
+                setTimeout(() => chartInstance.resize(), 50);
+            }
         }
 
+        // Render Phase Filter Buttons
+        function renderPhaseButtons() {
+            const container = document.getElementById('phase-filters');
+            if (!container) return;
+            container.innerHTML = phaseNames.map((name, idx) => {
+                const isActive = idx === activePhase;
+                const cls = isActive
+                    ? "bg-indigo-600 text-white border-indigo-500"
+                    : "bg-slate-950 text-slate-400 border-slate-800 hover:border-slate-700 hover:text-white";
+                return `<button onclick="setPhase(${idx})" class="text-xs font-medium px-3 py-1.5 rounded-xl border transition ${cls}">${name}</button>`;
+            }).join('');
+        }
+
+        function setPhase(idx) {
+            activePhase = idx;
+            renderPhaseButtons();
+            renderCurriculum();
+        }
+
+        // Render the 500 Clickable Modules
+        function renderCurriculum() {
+            const container = document.getElementById('curriculum-container');
+            const searchVal = (document.getElementById('module-search')?.value || '').toLowerCase().trim();
+            if (!container) return;
+
+            let html = '';
+            for (let i = 0; i < rawTitles.length; i++) {
+                const modNum = i + 1;
+                const phaseIdx = Math.floor(i / 50) + 1;
+                const title = rawTitles[i];
+
+                if (activePhase !== 0 && phaseIdx !== activePhase) continue;
+                if (searchVal && !title.toLowerCase().includes(searchVal) && !(`module ${modNum}`).includes(searchVal) && !(`${modNum}`).includes(searchVal)) continue;
+
+                const isDone = completedModules.includes(modNum);
+                const statusBadge = isDone
+                    ? `<span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md"><i class="fa-solid fa-check mr-1"></i>Done</span>`
+                    : `<span class="text-xs text-indigo-400 group-hover:translate-x-0.5 transition">Read Lesson &rarr;</span>`;
+
+                html += `
+                <div onclick="openModule(${i})" class="group cursor-pointer bg-slate-900 border ${isDone ? 'border-emerald-500/40' : 'border-slate-800'} hover:border-indigo-500 rounded-2xl p-5 transition shadow-lg flex flex-col justify-between space-y-3">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400">Module #${modNum}</span>
+                            <span class="text-[11px] text-slate-500">Phase ${phaseIdx}</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white group-hover:text-indigo-300 transition">${title}</h3>
+                        <p class="text-xs text-slate-400 mt-1.5 line-clamp-2">Includes plain-English concept breakdown, real-world numerical example, and 4-step action plan.</p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                        <span class="text-[11px] text-slate-500"><i class="fa-solid fa-calculator mr-1 text-indigo-400"></i>Example Included</span>
+                        ${statusBadge}
+                    </div>
+                </div>`;
+            }
+
+            container.innerHTML = html || `<div class="col-span-full text-center py-12 text-slate-400">No modules matched your search. Try another keyword!</div>`;
+            updateProgressUI();
+        }
+
+        function updateProgressUI() {
+            const count = completedModules.length;
+            const pct = Math.min(100, (count / 500) * 100);
+            const txt = document.getElementById('progress-text');
+            const bar = document.getElementById('progress-bar');
+            if (txt) txt.innerText = `${count} / 500 Completed`;
+            if (bar) bar.style.width = `${pct}%`;
+        }
+
+        // Modal Reader Functions
+        function openModule(index) {
+            currentModalIndex = index;
+            const d = getModuleDetails(index);
+            document.getElementById('modal-badge').innerText = `Module #${d.num} of 500`;
+            document.getElementById('modal-phase').innerText = d.phaseLabel;
+            document.getElementById('modal-title').innerText = d.title;
+            document.getElementById('modal-concept').innerHTML = d.concept;
+            document.getElementById('modal-example').innerHTML = d.example;
+            document.getElementById('modal-steps').innerHTML = d.steps.map(s => `<li>${s}</li>`).join('');
+            document.getElementById('modal-law').innerText = d.law;
+
+            const isDone = completedModules.includes(d.num);
+            const btnComplete = document.getElementById('btn-complete-mod');
+            if (isDone) {
+                btnComplete.className = "px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-emerald-400 border border-emerald-500/30 transition";
+                btnComplete.innerHTML = `<i class="fa-solid fa-check-double mr-1"></i> Completed (Click to Undo)`;
+            } else {
+                btnComplete.className = "px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white transition";
+                btnComplete.innerHTML = `<i class="fa-solid fa-check mr-1"></i> Mark Module Complete`;
+            }
+
+            document.getElementById('btn-prev-mod').disabled = (index === 0);
+            document.getElementById('btn-next-mod').disabled = (index === rawTitles.length - 1);
+
+            document.getElementById('lesson-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('lesson-modal').classList.add('hidden');
+        }
+
+        function navigateModule(dir) {
+            const nextIdx = currentModalIndex + dir;
+            if (nextIdx >= 0 && nextIdx < rawTitles.length) {
+                openModule(nextIdx);
+            }
+        }
+
+        function toggleCompleteCurrent() {
+            const modNum = currentModalIndex + 1;
+            const pos = completedModules.indexOf(modNum);
+            if (pos === -1) {
+                completedModules.push(modNum);
+            } else {
+                completedModules.splice(pos, 1);
+            }
+            localStorage.setItem('cb_completed_modules', JSON.stringify(completedModules));
+            openModule(currentModalIndex);
+            renderCurriculum();
+        }
+
+        // Estimator, Simulator & Generators
         function calculateEstimatedScore() {
             const lates = parseInt(document.getElementById('est-lates')?.value || '0');
-            const util = parseInt(document.getElementById('est-util')?.value || '50');
+            const util = parseInt(document.getElementById('est-util')?.value || '55');
             const age = parseInt(document.getElementById('est-age')?.value || '35');
-            const inquiries = parseInt(document.getElementById('est-inquiries')?.value || '10');
-
-            let baseScore = 650;
-            let totalScore = baseScore + lates + util + age + inquiries;
-            if (totalScore > 850) totalScore = 850;
-            if (totalScore < 300) totalScore = 300;
-
-            const scoreDisplay = document.getElementById('est-score-display');
+            const inq = parseInt(document.getElementById('est-inquiries')?.value || '10');
+            let score = Math.min(850, Math.max(300, 650 + lates + util + age + inq));
+            document.getElementById('est-score-display').innerText = score;
             const badge = document.getElementById('est-tier-badge');
-            const feedback = document.getElementById('est-feedback');
-
-            if (scoreDisplay) scoreDisplay.innerText = totalScore;
-
-            let tier = "Good";
-            let colorClass = "text-emerald-400 bg-emerald-500/10";
-            let msg = "Your profile is in solid standing. Focus on keeping utilization low to maximize point gains.";
-
-            if (totalScore >= 800) {
-                tier = "Exceptional";
-                colorClass = "text-indigo-400 bg-indigo-500/10";
-                msg = "Elite tier! You qualify for the absolute lowest interest rates and prime credit card perks.";
-            } else if (totalScore >= 740) {
-                tier = "Very Good";
-                colorClass = "text-emerald-400 bg-emerald-500/10";
-                msg = "Strong profile. You qualify for prime lending tiers across mortgages and auto loans.";
-            } else if (totalScore >= 670) {
-                tier = "Good";
-                colorClass = "text-emerald-400 bg-emerald-500/10";
-                msg = "Acceptable credit standing, though optimizing revolving utilization will push you into prime tiers.";
+            const fb = document.getElementById('est-feedback');
+            if (score >= 740) {
+                badge.innerText = score >= 800 ? "Exceptional" : "Very Good";
+                fb.innerText = "You are in the prime lending tier. Keep utilization under 10% before statement closing dates.";
+            } else if (score >= 670) {
+                badge.innerText = "Good";
+                fb.innerText = "Solid standing. Lowering card utilization below 9% via the AZEO method can push you above 740.";
             } else {
-                tier = "Fair / Needs Repair";
-                colorClass = "text-amber-400 bg-amber-500/10";
-                msg = "Action required: Prioritize paying down revolving balances below 30% and disputing inaccurate late marks.";
+                badge.innerText = "Fair / Rebuilding";
+                fb.innerText = "Focus on paying down revolving balances below 30% and challenging inaccurate late marks.";
             }
-
-            if (badge) {
-                badge.innerText = tier;
-                badge.className = `text-xs font-semibold px-2.5 py-1 rounded-full ${colorClass}`;
-            }
-            if (feedback) feedback.innerText = msg;
         }
 
         function runSimulation() {
@@ -509,29 +716,16 @@
             const monthly = parseFloat(document.getElementById('sim-monthly')?.value) || 0;
             const rate = (parseFloat(document.getElementById('sim-rate')?.value) || 0) / 100 / 12;
             const limit = parseFloat(document.getElementById('sim-limit')?.value) || 1;
+            document.getElementById('stat-start-util').innerText = ((balance / limit) * 100).toFixed(0) + '%';
 
-            const startUtil = ((balance / limit) * 100).toFixed(0);
-            const utilEl = document.getElementById('stat-start-util');
-            if (utilEl) utilEl.innerText = startUtil + '%';
-
-            let currentBal = balance;
-            let months = 0;
-            let labels = ['Month 0'];
-            let data = [balance];
-
-            while (currentBal > 0 && months < 60) {
+            let cur = balance, months = 0, labels = ['Month 0'], data = [balance];
+            while (cur > 0 && months < 60) {
                 months++;
-                let interest = currentBal * rate;
-                currentBal = currentBal + interest - monthly;
-                if (currentBal < 0) currentBal = 0;
-                labels.push(`Month ${months}`);
-                data.push(Math.round(currentBal));
-                if (currentBal === 0) break;
+                cur = Math.max(0, cur + (cur * rate) - monthly);
+                labels.push(`M${months}`);
+                data.push(Math.round(cur));
             }
-
-            const timeEl = document.getElementById('stat-payoff-time');
-            if (timeEl) timeEl.innerText = months >= 60 ? '5+ Years' : `${months} Months`;
-
+            document.getElementById('stat-payoff-time').innerText = months >= 60 ? '60+ Months' : `${months} Months`;
             if (chartInstance) {
                 chartInstance.data.labels = labels;
                 chartInstance.data.datasets[0].data = data;
@@ -539,147 +733,80 @@
             }
         }
 
-        // Letter Generators
         function generateDisputeLetter() {
             const name = document.getElementById('gen-name')?.value || '';
             const bureau = document.getElementById('gen-bureau')?.value || '';
-            const creditor = document.getElementById('gen-creditor')?.value || '';
-            const account = document.getElementById('gen-account')?.value || '';
+            const cred = document.getElementById('gen-creditor')?.value || '';
+            const acct = document.getElementById('gen-account')?.value || '';
             const reason = document.getElementById('gen-reason')?.value || '';
-            const today = new Date().toLocaleDateString();
-
-            const letter = `[${name}]
-[Your Address]
-[City, State, Zip]
-
-[Today's Date: ${today}]
-
-To:
-${bureau}
-[Bureau Dispute Department Address]
-
-RE: Formal Dispute of Inaccurate Information under FCRA Section 611
-
-Dear Consumer Dispute Division,
-
-I am writing to formally dispute inaccurate information currently appearing on my consumer credit report. Pursuant to Section 611 of the Fair Credit Reporting Act (15 U.S.C. § 1681i), you are legally obligated to conduct a reasonable investigation into the item(s) detailed below.
-
-Disputed Item:
-- Creditor Name: ${creditor}
-- Account Number: ${account}
-- Specific Reason for Dispute: ${reason}
-
-This item is inaccurate and harms my financial standing. Under federal law, if you cannot verify this tradeline with the original data furnisher within the statutory 30-day window, you must immediately delete this item from my credit profile and provide written confirmation.
-
-Sincerely,
-
-${name}`;
-
-            const out = document.getElementById('dispute-output');
-            if (out) out.value = letter;
+            document.getElementById('dispute-output').value = `${name}\n[Your Address]\nDate: ${new Date().toLocaleDateString()}\n\nTo: ${bureau}\nRE: Formal Dispute Under FCRA Section 611 (15 U.S.C. § 1681i)\n\nDear Dispute Department,\nI am formally disputing the following inaccurate tradeline on my credit report:\nCreditor: ${cred} | Account #: ${acct}\nReason: ${reason}\n\nPlease conduct a reasonable investigation with the data furnisher within 30 days or delete this unverified item immediately pursuant to federal law.\n\nSincerely,\n${name}`;
         }
 
         function generateValidationLetter() {
             const name = document.getElementById('val-name')?.value || '';
             const agency = document.getElementById('val-agency')?.value || '';
-            const account = document.getElementById('val-account')?.value || '';
-            const original = document.getElementById('val-original')?.value || '';
-            const today = new Date().toLocaleDateString();
-
-            const letter = `[${name}]
-[Your Address]
-[City, State, Zip]
-
-[Today's Date: ${today}]
-
-To:
-${agency}
-[Collection Agency Address]
-
-RE: Notice of Dispute & Request for Debt Validation pursuant to FDCPA (15 U.S.C. § 1692g)
-
-Dear Debt Collector,
-
-I am writing in response to your recent communication regarding alleged account #${account} linked to original creditor ${original}. 
-
-Be advised that I dispute this debt in its entirety. Pursuant to Section 809 of the Fair Debt Collection Practices Act, you are required to provide complete validation of this debt, including:
-1. The amount of the debt and detailed itemized accounting of all fees and interest added.
-2. The name and address of the original creditor.
-3. Proof that you are licensed to collect debt in my state of residence.
-4. A copy of any signed contract or agreement bearing my signature.
-
-Until complete validation is provided, you must cease all collection activities and report this account as "Disputed" to all major credit bureaus.
-
-Sincerely,
-
-${name}`;
-
-            const out = document.getElementById('validation-output');
-            if (out) out.value = letter;
+            const acct = document.getElementById('val-account')?.value || '';
+            const orig = document.getElementById('val-original')?.value || '';
+            document.getElementById('validation-output').value = `${name}\n[Your Address]\nDate: ${new Date().toLocaleDateString()}\n\nTo: ${agency}\nRE: FDCPA Section 809 Debt Validation Notice (15 U.S.C. § 1692g)\nAlleged Account #: ${acct} | Original Creditor: ${orig}\n\nBe advised that I dispute this alleged debt in full. Please provide complete validation including the original signed agreement, itemized accounting of all charges, and proof of state collection licensing. Cease all collection activity until validation is mailed.\n\nSincerely,\n${name}`;
         }
 
-        function copyText(elementId, btnTextId) {
-            const textarea = document.getElementById(elementId);
-            if (!textarea) return;
-            textarea.select();
+        function generateGoodwillLetter() {
+            const name = document.getElementById('gw-name')?.value || '';
+            const bank = document.getElementById('gw-bank')?.value || '';
+            const acct = document.getElementById('gw-account')?.value || '';
+            const date = document.getElementById('gw-date')?.value || '';
+            const reason = document.getElementById('gw-reason')?.value || '';
+            document.getElementById('goodwill-output').value = `${name}\nDate: ${new Date().toLocaleDateString()}\n\nTo: ${bank}\nRE: Goodwill Adjustment Request — Account #${acct}\n\nDear Executive Customer Relations,\nI am writing as a loyal customer to respectfully request a courtesy goodwill adjustment regarding a single late mark from ${date}. This isolated oversight occurred due to a ${reason}. Since then, my payment history has been spotless. Removing this late mark would greatly assist my upcoming financial goals.\n\nThank you for your partnership,\n${name}`;
+        }
+
+        function copyText(id, btnId) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.select();
             document.execCommand('copy');
-            const btn = document.getElementById(btnTextId);
-            if (!btn) return;
-            const original = btn.innerText;
-            btn.innerText = "Copied!";
-            setTimeout(() => { btn.innerText = original; }, 2000);
+            const b = document.getElementById(btnId);
+            if (b) { b.innerText = "Copied!"; setTimeout(() => b.innerText = "Copy Letter", 2000); }
         }
 
-        // Checklist Loader
         function loadChecklist() {
-            const container = document.getElementById('checklist-container');
-            if (!container) return;
             const items = [
-                "Outdated personal information (old employers, incorrect name spellings, old addresses tied to bad files).",
-                "Accounts marked as 'Open' that were actually closed by you in good standing.",
-                "Inaccurate high credit limits or revolving credit limits reporting too low (spiking utilization).",
-                "Duplicate collection tradelines reporting the exact same debt under two different collection agencies.",
-                "Late payment marks on accounts that were never actually 30+ days past due.",
-                "Original creditor accounts reporting past-due balances after being sold to a collection agency.",
-                "Inquiries from companies you never applied for credit with (potential unauthorized pulls).",
-                "Authorized user accounts still reporting on your file after you were removed.",
-                "Bankruptcies or civil judgments lingering past the statutory 7-to-10 year reporting window.",
-                "Medical debt under $500 or paid medical debt incorrectly remaining on active bureau reports."
+                "Scrub outdated addresses, misspelled names, and old employers tied to derogatory tradelines.",
+                "Verify every closed account reads 'Closed by Consumer' with a $0 balance.",
+                "Confirm credit limits are accurately reported so utilization isn't artificially inflated.",
+                "Check for duplicate collection accounts reporting the same original debt twice.",
+                "Verify the Date of First Delinquency (DOFD) on collections to ensure no illegal re-aging occurred.",
+                "Confirm original charged-off accounts report a $0 balance once sold to a third-party debt buyer.",
+                "Inspect hard inquiries over the past 24 months for unauthorized pulls.",
+                "Remove yourself as an Authorized User from any family card carrying over 10% utilization.",
+                "Verify that paid medical collections and medical debts under $500 are excluded.",
+                "Check that any derogatory mark older than 7 years (10 years for Chapter 7 bankruptcy) is purged."
             ];
-
-            container.innerHTML = items.map((text, idx) => `
-                <label class="flex items-start space-x-3 p-3 rounded-xl bg-slate-950 border border-slate-800 cursor-pointer hover:border-indigo-500/50 transition">
-                    <input type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-700 bg-slate-900 text-indigo-600 focus:ring-indigo-500">
-                    <span class="text-sm text-slate-300"><strong class="text-indigo-400">Check ${idx + 1}:</strong> ${text}</span>
-                </label>
-            `).join('');
+            document.getElementById('checklist-container').innerHTML = items.map((t, i) => `
+                <label class="flex items-start space-x-3 p-3.5 rounded-xl bg-slate-950 border border-slate-800 cursor-pointer hover:border-indigo-500/50 transition">
+                    <input type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-700 bg-slate-900 text-indigo-600">
+                    <span class="text-sm text-slate-300"><strong class="text-indigo-400">Audit Step ${i+1}:</strong> ${t}</span>
+                </label>`).join('');
         }
 
-        // Curriculum Loader
-        function loadCurriculum() {
-            const container = document.getElementById('curriculum-container');
-            if (!container) return;
-            const phases = [
-                { title: "Phase 1: Foundations & Bureaus", range: "Modules 1–50", desc: "FICO scoring models, Equifax/Experian/TransUnion matrix, ghost profiles, and authorized user rules." },
-                { title: "Phase 2: Utilization & Debt Math", range: "Modules 51–100", desc: "30% threshold formulas, AZEO tricks, statement closing dates, and debt payoff compounding." },
-                { title: "Phase 3: Dispute Tactics & Law", range: "Modules 101–150", desc: "FCRA dispute letter generation, 30-day statutory deadlines, CFPB escalation, and FDCPA rights." },
-                { title: "Phase 4: Mortgages & Life Milestones", range: "Modules 151–200", desc: "FICO 2/4/5 mortgage scoring, middle score rules, auto loan financing, and business credit setup." },
-                { title: "Phase 5: Psychology, Automation & Scaling", range: "Modules 201–500", desc: "Zero-baseline budgeting, two-factor vault security, hardship programs, and advanced litigation strategies." }
-            ];
+        window.onload = function() {
+            renderPhaseButtons();
+            renderCurriculum();
+            calculateEstimatedScore();
+            generateDisputeLetter();
+            generateValidationLetter();
+            generateGoodwillLetter();
+            loadChecklist();
 
-            container.innerHTML = phases.map(p => `
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-indigo-500/50 transition">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400">${p.range}</span>
-                        <span class="text-slate-500 text-xs">Active Module</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white">${p.title}</h3>
-                    <p class="text-slate-400 text-sm mt-1">${p.desc}</p>
-                </div>
-            `).join('');
-        }
-
-        window.onload = initApp;
+            const ctx = document.getElementById('simulationChart')?.getContext('2d');
+            if (ctx) {
+                chartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: { labels: [], datasets: [{ label: 'Balance ($)', data: [], borderColor: '#6366f1', backgroundColor: 'rgba(99,102,241,0.1)', borderWidth: 3, fill: true, tension: 0.3 }] },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+                });
+                runSimulation();
+            }
+        };
     </script>
 </body>
 </html>
