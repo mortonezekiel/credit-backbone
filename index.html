@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credit Backbone — Elite Credit Education & Simulator</title>
+    <title>Credit Backbone — Elite Financial Terminal & Education Suite</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -26,7 +26,7 @@
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col">
 
     <!-- Top Navigation Bar -->
-    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+    <header class="border-b border-slate-800 bg-slate-900/85 backdrop-blur sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
@@ -34,10 +34,12 @@
                 </div>
                 <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-indigo-400 bg-clip-text text-transparent">Credit Backbone</span>
             </div>
-            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-400">
-                <button onclick="switchTab('simulator')" id="nav-simulator" class="text-indigo-400 transition hover:text-white">Utilization Simulator</button>
-                <button onclick="switchTab('curriculum')" id="nav-curriculum" class="transition hover:text-white">Master Curriculum (500 Modules)</button>
-                <button onclick="switchTab('playbook')" id="nav-playbook" class="transition hover:text-white">Dispute Playbook</button>
+            <nav class="hidden md:flex items-center space-x-5 text-sm font-medium text-slate-400">
+                <button onclick="switchTab('simulator')" id="nav-simulator" class="text-indigo-400 transition hover:text-white">Simulator</button>
+                <button onclick="switchTab('dispute')" id="nav-dispute" class="transition hover:text-white">FCRA Dispute</button>
+                <button onclick="switchTab('validation')" id="nav-validation" class="transition hover:text-white">Debt Validation</button>
+                <button onclick="switchTab('checklist')" id="nav-checklist" class="transition hover:text-white">Audit Checklist</button>
+                <button onclick="switchTab('curriculum')" id="nav-curriculum" class="transition hover:text-white">500 Modules</button>
             </nav>
             <div>
                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
@@ -111,7 +113,125 @@
             </div>
         </section>
 
-        <!-- TAB 2: CURRICULUM -->
+        <!-- TAB 2: FCRA DISPUTE LETTER GENERATOR -->
+        <section id="tab-dispute" class="hidden space-y-8">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">FCRA Dispute Letter Generator</h1>
+                <p class="mt-2 text-slate-400 text-lg">Generate a legally compliant federal dispute letter under Section 611 of the Fair Credit Reporting Act to challenge inaccurate items with credit bureaus.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Form Inputs -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+                    <h2 class="text-lg font-semibold text-white flex items-center">
+                        <i class="fa-solid fa-file-pen text-indigo-400 mr-2"></i> Dispute Details
+                    </h2>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Your Full Name</label>
+                        <input type="text" id="gen-name" value="Jane Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateDisputeLetter()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Credit Bureau</label>
+                        <select id="gen-bureau" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" onchange="generateDisputeLetter()">
+                            <option value="Experian Information Solutions, Inc.">Experian</option>
+                            <option value="Equifax Information Services LLC">Equifax</option>
+                            <option value="TransUnion LLC">TransUnion</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Creditor / Furnisher Name</label>
+                        <input type="text" id="gen-creditor" value="Acme Financial Bank" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateDisputeLetter()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Account Number</label>
+                        <input type="text" id="gen-account" value="XXXX-XXXX-1234" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateDisputeLetter()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Reason for Dispute</label>
+                        <select id="gen-reason" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" onchange="generateDisputeLetter()">
+                            <option value="This account is inaccurate and does not belong to me (Possible Fraud/Mix-up).">Inaccurate account / Not mine</option>
+                            <option value="The late payment marks reported on this account are factually incorrect; payments were made on time.">Incorrect late payment history</option>
+                            <option value="This collection account has been paid/settled and is incorrectly reporting an active balance.">Incorrect balance on paid collection</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Generated Letter Output -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-lg font-semibold text-white flex items-center">
+                            <i class="fa-solid fa-envelope-open-text text-indigo-400 mr-2"></i> Live Preview
+                        </h2>
+                        <button onclick="copyText('dispute-output', 'copy-btn-dispute')" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition flex items-center space-x-1.5">
+                            <i class="fa-solid fa-copy"></i> <span id="copy-btn-dispute">Copy Letter</span>
+                        </button>
+                    </div>
+                    <textarea id="dispute-output" readonly class="w-full h-80 bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-300 text-xs font-mono focus:outline-none resize-none"></textarea>
+                    <p class="text-xs text-slate-500 italic">*Send via USPS Certified Mail with Return Receipt Requested.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: DEBT VALIDATION LETTER GENERATOR -->
+        <section id="tab-validation" class="hidden space-y-8">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">FDCPA Debt Validation Letter Generator</h1>
+                <p class="mt-2 text-slate-400 text-lg">Demand formal verification and itemized accounting from collection agencies under Section 809 of the Fair Debt Collection Practices Act.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Form Inputs -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+                    <h2 class="text-lg font-semibold text-white flex items-center">
+                        <i class="fa-solid fa-scale-balanced text-indigo-400 mr-2"></i> Collection Details
+                    </h2>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Your Full Name</label>
+                        <input type="text" id="val-name" value="Jane Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateValidationLetter()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Collection Agency Name</label>
+                        <input type="text" id="val-agency" value="Apex Recovery Group LLC" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateValidationLetter()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Alleged Account Number / Ref #</label>
+                        <input type="text" id="val-account" value="COL-9988234" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateValidationLetter()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Original Creditor Name</label>
+                        <input type="text" id="val-original" value="Metro City Hospital" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="generateValidationLetter()">
+                    </div>
+                </div>
+
+                <!-- Generated Letter Output -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-lg font-semibold text-white flex items-center">
+                            <i class="fa-solid fa-envelope-open-text text-indigo-400 mr-2"></i> Live Preview
+                        </h2>
+                        <button onclick="copyText('validation-output', 'copy-btn-val')" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition flex items-center space-x-1.5">
+                            <i class="fa-solid fa-copy"></i> <span id="copy-btn-val">Copy Letter</span>
+                        </button>
+                    </div>
+                    <textarea id="validation-output" readonly class="w-full h-80 bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-300 text-xs font-mono focus:outline-none resize-none"></textarea>
+                    <p class="text-xs text-slate-500 italic">*Under FDCPA Section 809(b), collectors must cease collection activity until validation is mailed.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: AUDIT CHECKLIST -->
+        <section id="tab-checklist" class="hidden space-y-6">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl font-extrabold tracking-tight text-white">Credit Report Audit Checklist</h1>
+                <p class="mt-2 text-slate-400">Inspect your raw tri-merge credit reports for these 10 common reporting errors that drag down scores unnecessarily.</p>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4 max-w-4xl" id="checklist-container">
+                <!-- Checklist items populated via JS -->
+            </div>
+        </section>
+
+        <!-- TAB 5: CURRICULUM -->
         <section id="tab-curriculum" class="hidden space-y-6">
             <div class="max-w-3xl">
                 <h1 class="text-3xl font-extrabold tracking-tight text-white">The 500-Module Master Curriculum</h1>
@@ -120,29 +240,6 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="curriculum-container">
                 <!-- Populated dynamically via JS -->
-            </div>
-        </section>
-
-        <!-- TAB 3: PLAYBOOK -->
-        <section id="tab-playbook" class="hidden space-y-6">
-            <div class="max-w-3xl">
-                <h1 class="text-3xl font-extrabold tracking-tight text-white">Dispute & Bureau Playbook</h1>
-                <p class="mt-2 text-slate-400">Step-by-step tactical frameworks for executing FCRA disputes, demanding debt validation, and scrubbing inaccurate tradelines.</p>
-            </div>
-
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
-                <div class="border-l-4 border-indigo-500 pl-4 py-2">
-                    <h3 class="text-lg font-bold text-white">1. The 30-Day Statutory Rule</h3>
-                    <p class="text-slate-400 text-sm mt-1">Under Section 611 of the Fair Credit Reporting Act (FCRA), credit bureaus have exactly 30 days from the date of receipt to investigate your dispute. If they fail to verify or respond within 30 days, federal law mandates immediate deletion.</p>
-                </div>
-                <div class="border-l-4 border-emerald-500 pl-4 py-2">
-                    <h3 class="text-lg font-bold text-white">2. Direct Furnisher Disputes (Section 623)</h3>
-                    <p class="text-slate-400 text-sm mt-1">Don't just dispute with Equifax or Experian. Send a certified dispute letter directly to the original bank, hospital, or collection agency. Furnishers are legally barred from verifying inaccurate data.</p>
-                </div>
-                <div class="border-l-4 border-violet-500 pl-4 py-2">
-                    <h3 class="text-lg font-bold text-white">3. Certified Mail Protocol</h3>
-                    <p class="text-slate-400 text-sm mt-1">Always send legal correspondence via USPS Certified Mail with Return Receipt Requested. The green card signature provides indisputable legal proof of delivery.</p>
-                </div>
             </div>
         </section>
 
@@ -157,7 +254,7 @@
     <script>
         // Tab Navigation
         function switchTab(tabId) {
-            ['simulator', 'curriculum', 'playbook'].forEach(t => {
+            ['simulator', 'dispute', 'validation', 'checklist', 'curriculum'].forEach(t => {
                 document.getElementById(`tab-${t}`).classList.add('hidden');
                 document.getElementById(`nav-${t}`).classList.remove('text-indigo-400');
             });
@@ -165,9 +262,9 @@
             document.getElementById(`nav-${tabId}`).classList.add('text-indigo-400');
         }
 
-        // Initialize Chart
+        // Initialize Chart & Generators
         let chartInstance = null;
-        function initChart() {
+        function initApp() {
             const ctx = document.getElementById('simulationChart').getContext('2d');
             chartInstance = new Chart(ctx, {
                 type: 'line',
@@ -194,6 +291,10 @@
                 }
             });
             runSimulation();
+            generateDisputeLetter();
+            generateValidationLetter();
+            loadChecklist();
+            loadCurriculum();
         }
 
         function runSimulation() {
@@ -229,31 +330,141 @@
             }
         }
 
-        // Populate 500 Curriculum Modules
-        const curriculumContainer = document.getElementById('curriculum-container');
-        const phases = [
-            { title: "Phase 1: Foundations & Bureaus", range: "Modules 1–50", desc: "FICO scoring models, Equifax/Experian/TransUnion matrix, ghost profiles, and authorized user rules." },
-            { title: "Phase 2: Utilization & Debt Math", range: "Modules 51–100", desc: "30% threshold formulas, AZEO tricks, statement closing dates, and debt payoff compounding." },
-            { title: "Phase 3: Dispute Tactics & Law", range: "Modules 101–150", desc: "FCRA dispute letter generation, 30-day statutory deadlines, CFPB escalation, and FDCPA rights." },
-            { title: "Phase 4: Mortgages & Life Milestones", range: "Modules 151–200", desc: "FICO 2/4/5 mortgage scoring, middle score rules, auto loan financing, and business credit setup." },
-            { title: "Phase 5: Psychology, Automation & Scaling", range: "Modules 201–500", desc: "Zero-baseline budgeting, two-factor vault security, hardship programs, and advanced litigation strategies." }
-        ];
+        // Letter Generators
+        function generateDisputeLetter() {
+            const name = document.getElementById('gen-name').value;
+            const bureau = document.getElementById('gen-bureau').value;
+            const creditor = document.getElementById('gen-creditor').value;
+            const account = document.getElementById('gen-account').value;
+            const reason = document.getElementById('gen-reason').value;
+            const today = new Date().toLocaleDateString();
 
-        phases.forEach((p, idx) => {
-            const card = document.createElement('div');
-            card.className = "bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-indigo-500/50 transition";
-            card.innerHTML = `
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400">${p.range}</span>
-                    <span class="text-slate-500 text-xs">Active Module</span>
+            const letter = `[${name}]
+[Your Address]
+[City, State, Zip]
+
+[Today's Date: ${today}]
+
+To:
+${bureau}
+[Bureau Dispute Department Address]
+
+RE: Formal Dispute of Inaccurate Information under FCRA Section 611
+
+Dear Consumer Dispute Division,
+
+I am writing to formally dispute inaccurate information currently appearing on my consumer credit report. Pursuant to Section 611 of the Fair Credit Reporting Act (15 U.S.C. § 1681i), you are legally obligated to conduct a reasonable investigation into the item(s) detailed below.
+
+Disputed Item:
+- Creditor Name: ${creditor}
+- Account Number: ${account}
+- Specific Reason for Dispute: ${reason}
+
+This item is inaccurate and harms my financial standing. Under federal law, if you cannot verify this tradeline with the original data furnisher within the statutory 30-day window, you must immediately delete this item from my credit profile and provide written confirmation.
+
+Sincerely,
+
+${name}`;
+
+            document.getElementById('dispute-output').value = letter;
+        }
+
+        function generateValidationLetter() {
+            const name = document.getElementById('val-name').value;
+            const agency = document.getElementById('val-agency').value;
+            const account = document.getElementById('val-account').value;
+            const original = document.getElementById('val-original').value;
+            const today = new Date().toLocaleDateString();
+
+            const letter = `[${name}]
+[Your Address]
+[City, State, Zip]
+
+[Today's Date: ${today}]
+
+To:
+${agency}
+[Collection Agency Address]
+
+RE: Notice of Dispute & Request for Debt Validation pursuant to FDCPA (15 U.S.C. § 1692g)
+
+Dear Debt Collector,
+
+I am writing in response to your recent communication regarding alleged account #${account} linked to original creditor ${original}. 
+
+Be advised that I dispute this debt in its entirety. Pursuant to Section 809 of the Fair Debt Collection Practices Act, you are required to provide complete validation of this debt, including:
+1. The amount of the debt and detailed itemized accounting of all fees and interest added.
+2. The name and address of the original creditor.
+3. Proof that you are licensed to collect debt in my state of residence.
+4. A copy of any signed contract or agreement bearing my signature.
+
+Until complete validation is provided, you must cease all collection activities and report this account as "Disputed" to all major credit bureaus.
+
+Sincerely,
+
+${name}`;
+
+            document.getElementById('validation-output').value = letter;
+        }
+
+        function copyText(elementId, btnTextId) {
+            const textarea = document.getElementById(elementId);
+            textarea.select();
+            document.execCommand('copy');
+            const btn = document.getElementById(btnTextId);
+            const original = btn.innerText;
+            btn.innerText = "Copied!";
+            setTimeout(() => { btn.innerText = original; }, 2000);
+        }
+
+        // Checklist Loader
+        function loadChecklist() {
+            const container = document.getElementById('checklist-container');
+            const items = [
+                "Outdated personal information (old employers, incorrect name spellings, old addresses tied to bad files).",
+                "Accounts marked as 'Open' that were actually closed by you in good standing.",
+                "Inaccurate high credit limits or revolving credit limits reporting too low (spiking utilization).",
+                "Duplicate collection tradelines reporting the exact same debt under two different collection agencies.",
+                "Late payment marks on accounts that were never actually 30+ days past due.",
+                "Original creditor accounts reporting past-due balances after being sold to a collection agency.",
+                "Inquiries from companies you never applied for credit with (potential unauthorized pulls).",
+                "Authorized user accounts still reporting on your file after you were removed.",
+                "Bankruptcies or civil judgments lingering past the statutory 7-to-10 year reporting window.",
+                "Medical debt under $500 or paid medical debt incorrectly remaining on active bureau reports."
+            ];
+
+            container.innerHTML = items.map((text, idx) => `
+                <label class="flex items-start space-x-3 p-3 rounded-xl bg-slate-950 border border-slate-800 cursor-pointer hover:border-indigo-500/50 transition">
+                    <input type="checkbox" class="mt-1 h-4 w-4 rounded border-slate-700 bg-slate-900 text-indigo-600 focus:ring-indigo-500">
+                    <span class="text-sm text-slate-300"><strong class="text-indigo-400">Check ${idx + 1}:</strong> ${text}</span>
+                </label>
+            `).join('');
+        }
+
+        // Curriculum Loader
+        function loadCurriculum() {
+            const container = document.getElementById('curriculum-container');
+            const phases = [
+                { title: "Phase 1: Foundations & Bureaus", range: "Modules 1–50", desc: "FICO scoring models, Equifax/Experian/TransUnion matrix, ghost profiles, and authorized user rules." },
+                { title: "Phase 2: Utilization & Debt Math", range: "Modules 51–100", desc: "30% threshold formulas, AZEO tricks, statement closing dates, and debt payoff compounding." },
+                { title: "Phase 3: Dispute Tactics & Law", range: "Modules 101–150", desc: "FCRA dispute letter generation, 30-day statutory deadlines, CFPB escalation, and FDCPA rights." },
+                { title: "Phase 4: Mortgages & Life Milestones", range: "Modules 151–200", desc: "FICO 2/4/5 mortgage scoring, middle score rules, auto loan financing, and business credit setup." },
+                { title: "Phase 5: Psychology, Automation & Scaling", range: "Modules 201–500", desc: "Zero-baseline budgeting, two-factor vault security, hardship programs, and advanced litigation strategies." }
+            ];
+
+            container.innerHTML = phases.map(p => `
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-indigo-500/50 transition">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400">${p.range}</span>
+                        <span class="text-slate-500 text-xs">Active Module</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">${p.title}</h3>
+                    <p class="text-slate-400 text-sm mt-1">${p.desc}</p>
                 </div>
-                <h3 class="text-lg font-bold text-white">${p.title}</h3>
-                <p class="text-slate-400 text-sm mt-1">${p.desc}</p>
-            `;
-            curriculumContainer.appendChild(card);
-        });
+            `).join('');
+        }
 
-        window.onload = initChart;
+        window.onload = initApp;
     </script>
 </body>
 </html>
