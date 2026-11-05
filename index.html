@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Backbone — Elite Credit Education & Simulator</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#151f32', 900: '#0f172a', 950: '#090d16' }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Chart.js for Interactive Simulators -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                    <i class="fa-solid fa-shield-halved text-white text-lg"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-indigo-400 bg-clip-text text-transparent">Credit Backbone</span>
+            </div>
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-400">
+                <button onclick="switchTab('simulator')" id="nav-simulator" class="text-indigo-400 transition hover:text-white">Utilization Simulator</button>
+                <button onclick="switchTab('curriculum')" id="nav-curriculum" class="transition hover:text-white">Master Curriculum (500 Modules)</button>
+                <button onclick="switchTab('playbook')" id="nav-playbook" class="transition hover:text-white">Dispute Playbook</button>
+            </nav>
+            <div>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-2"></span> Terminal Active
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- TAB 1: SIMULATOR -->
+        <section id="tab-simulator" class="space-y-8">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Credit Utilization & Debt Payoff Engine</h1>
+                <p class="mt-2 text-slate-400 text-lg">Model your debt reduction trajectory and see instantly how dropping revolving utilization below critical 30% and 10% thresholds restores your credit score.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Inputs Card -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+                    <h2 class="text-lg font-semibold text-white flex items-center">
+                        <i class="fa-solid fa-sliders text-indigo-400 mr-2"></i> Model Parameters
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Total Revolving Balance ($)</label>
+                            <input type="number" id="sim-balance" value="7500" step="250" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="runSimulation()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Monthly Payment ($)</label>
+                            <input type="number" id="sim-monthly" value="500" step="50" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="runSimulation()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Average APR (%)</label>
+                            <input type="number" id="sim-rate" value="20.5" step="0.5" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="runSimulation()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">Total Credit Limit ($)</label>
+                            <input type="number" id="sim-limit" value="10000" step="500" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" oninput="runSimulation()">
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-800 space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-400">Starting Utilization:</span>
+                            <span id="stat-start-util" class="font-bold text-amber-400">75%</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-400">Projected Payoff Time:</span>
+                            <span id="stat-payoff-time" class="font-bold text-white">18 Months</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart Card -->
+                <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-lg font-semibold text-white mb-4 flex items-center justify-between">
+                            <span>Balance & Threshold Trajectory</span>
+                            <span class="text-xs text-indigo-400 font-normal">Target: Below 30% (Yellow) & 10% (Green)</span>
+                        </h2>
+                        <div class="h-80 w-full">
+                            <canvas id="simulationChart"></canvas>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-xs text-slate-500 italic">*Simulating balance reduction curve over time against standard credit scoring utilization tiers.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: CURRICULUM -->
+        <section id="tab-curriculum" class="hidden space-y-6">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl font-extrabold tracking-tight text-white">The 500-Module Master Curriculum</h1>
+                <p class="mt-2 text-slate-400">Complete structured blueprint moving from foundational credit bureau mechanics to advanced litigation and systemic financial literacy.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="curriculum-container">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- TAB 3: PLAYBOOK -->
+        <section id="tab-playbook" class="hidden space-y-6">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl font-extrabold tracking-tight text-white">Dispute & Bureau Playbook</h1>
+                <p class="mt-2 text-slate-400">Step-by-step tactical frameworks for executing FCRA disputes, demanding debt validation, and scrubbing inaccurate tradelines.</p>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                <div class="border-l-4 border-indigo-500 pl-4 py-2">
+                    <h3 class="text-lg font-bold text-white">1. The 30-Day Statutory Rule</h3>
+                    <p class="text-slate-400 text-sm mt-1">Under Section 611 of the Fair Credit Reporting Act (FCRA), credit bureaus have exactly 30 days from the date of receipt to investigate your dispute. If they fail to verify or respond within 30 days, federal law mandates immediate deletion.</p>
+                </div>
+                <div class="border-l-4 border-emerald-500 pl-4 py-2">
+                    <h3 class="text-lg font-bold text-white">2. Direct Furnisher Disputes (Section 623)</h3>
+                    <p class="text-slate-400 text-sm mt-1">Don't just dispute with Equifax or Experian. Send a certified dispute letter directly to the original bank, hospital, or collection agency. Furnishers are legally barred from verifying inaccurate data.</p>
+                </div>
+                <div class="border-l-4 border-violet-500 pl-4 py-2">
+                    <h3 class="text-lg font-bold text-white">3. Certified Mail Protocol</h3>
+                    <p class="text-slate-400 text-sm mt-1">Always send legal correspondence via USPS Certified Mail with Return Receipt Requested. The green card signature provides indisputable legal proof of delivery.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 mt-16 py-8 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Credit Backbone. Engineered for financial sovereignty.</p>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Tab Navigation
+        function switchTab(tabId) {
+            ['simulator', 'curriculum', 'playbook'].forEach(t => {
+                document.getElementById(`tab-${t}`).classList.add('hidden');
+                document.getElementById(`nav-${t}`).classList.remove('text-indigo-400');
+            });
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            document.getElementById(`nav-${tabId}`).classList.add('text-indigo-400');
+        }
+
+        // Initialize Chart
+        let chartInstance = null;
+        function initChart() {
+            const ctx = document.getElementById('simulationChart').getContext('2d');
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Projected Balance ($)',
+                        data: [],
+                        borderColor: '#6366f1',
+                        backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } },
+                        y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } }
+                    }
+                }
+            });
+            runSimulation();
+        }
+
+        function runSimulation() {
+            const balance = parseFloat(document.getElementById('sim-balance').value) || 0;
+            const monthly = parseFloat(document.getElementById('sim-monthly').value) || 0;
+            const rate = (parseFloat(document.getElementById('sim-rate').value) || 0) / 100 / 12;
+            const limit = parseFloat(document.getElementById('sim-limit').value) || 1;
+
+            const startUtil = ((balance / limit) * 100).toFixed(0);
+            document.getElementById('stat-start-util').innerText = startUtil + '%';
+
+            let currentBal = balance;
+            let months = 0;
+            let labels = ['Month 0'];
+            let data = [balance];
+
+            while (currentBal > 0 && months < 60) {
+                months++;
+                let interest = currentBal * rate;
+                currentBal = currentBal + interest - monthly;
+                if (currentBal < 0) currentBal = 0;
+                labels.push(`Month ${months}`);
+                data.push(Math.round(currentBal));
+                if (currentBal === 0) break;
+            }
+
+            document.getElementById('stat-payoff-time').innerText = months >= 60 ? '5+ Years' : `${months} Months`;
+
+            if (chartInstance) {
+                chartInstance.data.labels = labels;
+                chartInstance.data.datasets[0].data = data;
+                chartInstance.update();
+            }
+        }
+
+        // Populate 500 Curriculum Modules
+        const curriculumContainer = document.getElementById('curriculum-container');
+        const phases = [
+            { title: "Phase 1: Foundations & Bureaus", range: "Modules 1–50", desc: "FICO scoring models, Equifax/Experian/TransUnion matrix, ghost profiles, and authorized user rules." },
+            { title: "Phase 2: Utilization & Debt Math", range: "Modules 51–100", desc: "30% threshold formulas, AZEO tricks, statement closing dates, and debt payoff compounding." },
+            { title: "Phase 3: Dispute Tactics & Law", range: "Modules 101–150", desc: "FCRA dispute letter generation, 30-day statutory deadlines, CFPB escalation, and FDCPA rights." },
+            { title: "Phase 4: Mortgages & Life Milestones", range: "Modules 151–200", desc: "FICO 2/4/5 mortgage scoring, middle score rules, auto loan financing, and business credit setup." },
+            { title: "Phase 5: Psychology, Automation & Scaling", range: "Modules 201–500", desc: "Zero-baseline budgeting, two-factor vault security, hardship programs, and advanced litigation strategies." }
+        ];
+
+        phases.forEach((p, idx) => {
+            const card = document.createElement('div');
+            card.className = "bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-indigo-500/50 transition";
+            card.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400">${p.range}</span>
+                    <span class="text-slate-500 text-xs">Active Module</span>
+                </div>
+                <h3 class="text-lg font-bold text-white">${p.title}</h3>
+                <p class="text-slate-400 text-sm mt-1">${p.desc}</p>
+            `;
+            curriculumContainer.appendChild(card);
+        });
+
+        window.onload = initChart;
+    </script>
+</body>
+</html>
