@@ -35,7 +35,9 @@
                 <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-indigo-400 bg-clip-text text-transparent">Credit Backbone</span>
             </div>
             <nav class="hidden md:flex items-center space-x-5 text-sm font-medium text-slate-400">
-                <button onclick="switchTab('simulator')" id="nav-simulator" class="text-indigo-400 transition hover:text-white">Simulator</button>
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="text-indigo-400 transition hover:text-white">Dashboard</button>
+                <button onclick="switchTab('estimator')" id="nav-estimator" class="transition hover:text-white">Score Estimator</button>
+                <button onclick="switchTab('simulator')" id="nav-simulator" class="transition hover:text-white">Debt Simulator</button>
                 <button onclick="switchTab('dispute')" id="nav-dispute" class="transition hover:text-white">FCRA Dispute</button>
                 <button onclick="switchTab('validation')" id="nav-validation" class="transition hover:text-white">Debt Validation</button>
                 <button onclick="switchTab('checklist')" id="nav-checklist" class="transition hover:text-white">Audit Checklist</button>
@@ -52,8 +54,159 @@
     <!-- Main Content Area -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        <!-- TAB 1: SIMULATOR -->
-        <section id="tab-simulator" class="space-y-8">
+        <!-- TAB 0: DASHBOARD -->
+        <section id="tab-dashboard" class="space-y-8">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Tri-Bureau Credit Intelligence</h1>
+                <p class="mt-2 text-slate-400 text-lg">Real-time tracking of your Equifax, Experian, and TransUnion baseline scores and financial health metrics.</p>
+            </div>
+
+            <!-- Score Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 text-indigo-500/20 text-4xl"><i class="fa-solid fa-building-columns"></i></div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Experian FICO 8</span>
+                    <div class="mt-4 flex items-baseline space-x-2">
+                        <span class="text-4xl font-extrabold text-white">724</span>
+                        <span class="text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">+12 pts</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between text-xs text-slate-400">
+                        <span>Status: <strong class="text-emerald-400">Good</strong></span>
+                        <span>Updated: Today</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 text-violet-500/20 text-4xl"><i class="fa-solid fa-chart-line"></i></div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Equifax FICO 8</span>
+                    <div class="mt-4 flex items-baseline space-x-2">
+                        <span class="text-4xl font-extrabold text-white">718</span>
+                        <span class="text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">+8 pts</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between text-xs text-slate-400">
+                        <span>Status: <strong class="text-emerald-400">Good</strong></span>
+                        <span>Updated: Today</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 text-blue-500/20 text-4xl"><i class="fa-solid fa-shield-halved"></i></div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">TransUnion Vantage 3.0</span>
+                    <div class="mt-4 flex items-baseline space-x-2">
+                        <span class="text-4xl font-extrabold text-white">730</span>
+                        <span class="text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">+15 pts</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-800 flex justify-between text-xs text-slate-400">
+                        <span>Status: <strong class="text-indigo-400">Very Good</strong></span>
+                        <span>Updated: Today</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Action Hub -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+                <h2 class="text-lg font-semibold text-white flex items-center">
+                    <i class="fa-solid fa-bolt text-indigo-400 mr-2"></i> Instant Score Impact Actions
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <button onclick="switchTab('estimator')" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500/50 text-left transition group">
+                        <div class="text-indigo-400 font-semibold mb-1 group-hover:text-indigo-300">Score Estimator</div>
+                        <p class="text-xs text-slate-400">Calculate projected FICO impact based on habits.</p>
+                    </button>
+                    <button onclick="switchTab('simulator')" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500/50 text-left transition group">
+                        <div class="text-indigo-400 font-semibold mb-1 group-hover:text-indigo-300">Debt Payoff Engine</div>
+                        <p class="text-xs text-slate-400">Model utilization drops below 30% and 10% tiers.</p>
+                    </button>
+                    <button onclick="switchTab('dispute')" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500/50 text-left transition group">
+                        <div class="text-indigo-400 font-semibold mb-1 group-hover:text-indigo-300">Generate FCRA Dispute</div>
+                        <p class="text-xs text-slate-400">Challenge inaccurate late marks or collections.</p>
+                    </button>
+                    <button onclick="switchTab('validation')" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500/50 text-left transition group">
+                        <div class="text-indigo-400 font-semibold mb-1 group-hover:text-indigo-300">Demand Validation</div>
+                        <p class="text-xs text-slate-400">Stop collection agencies under FDCPA Section 809.</p>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 1: SCORE ESTIMATOR -->
+        <section id="tab-estimator" class="hidden space-y-8">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Interactive FICO Score Estimator</h1>
+                <p class="mt-2 text-slate-400 text-lg">Answer key profile questions to estimate your credit standing and identify immediate point-boosting levers.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Toggles & Sliders -->
+                <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+                    <h2 class="text-lg font-semibold text-white flex items-center">
+                        <i class="fa-solid fa-sliders text-indigo-400 mr-2"></i> Profile Factors
+                    </h2>
+
+                    <div class="space-y-5">
+                        <div>
+                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Payment History (Any 30+ day lates in past 24 months?)</label>
+                            <select id="est-lates" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" onchange="calculateEstimatedScore()">
+                                <option value="0">Zero Late Payments (Pristine)</option>
+                                <option value="-35">1 Late Payment (30 Days)</option>
+                                <option value="-75">Multiple Late Payments or 60+ Days</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Credit Utilization Ratio</label>
+                            <select id="est-util" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" onchange="calculateEstimatedScore()">
+                                <option value="50">Under 10% (Optimal)</option>
+                                <option value="20">10% to 29% (Good)</option>
+                                <option value="-30">30% to 50% (Fair - Penalty Zone)</option>
+                                <option value="-70">Over 50% (High Utilization Penalty)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Age of Oldest Credit Account</label>
+                            <select id="est-age" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" onchange="calculateEstimatedScore()">
+                                <option value="35">7+ Years (Well Aged)</option>
+                                <option value="15">3 to 6 Years</option>
+                                <option value="-20">Under 3 Years (Thin/New File)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium uppercase tracking-wider text-slate-400 mb-2">Hard Inquiries (Past 12 Months)</label>
+                            <select id="est-inquiries" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500" onchange="calculateEstimatedScore()">
+                                <option value="10">0 to 1 Inquiries</option>
+                                <option value="-15">2 to 4 Inquiries</option>
+                                <option value="-40">5+ Inquiries (Seeking Credit Aggressively)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Score Output Card -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between space-y-6">
+                    <div>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Estimated FICO Score</span>
+                        <div class="mt-4 flex items-baseline space-x-3">
+                            <span id="est-score-display" class="text-5xl font-extrabold text-white">740</span>
+                            <span id="est-tier-badge" class="text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">Very Good</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-3">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-400">Key Takeaway</h3>
+                        <p id="est-feedback" class="text-xs text-slate-300 leading-relaxed">Your profile reflects strong foundational credit discipline. Maintain low revolving utilization to protect your tier.</p>
+                    </div>
+
+                    <button onclick="switchTab('simulator')" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition shadow-lg shadow-indigo-600/20">
+                        Launch Debt Payoff Engine <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: SIMULATOR -->
+        <section id="tab-simulator" class="hidden space-y-8">
             <div class="max-w-3xl">
                 <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Credit Utilization & Debt Payoff Engine</h1>
                 <p class="mt-2 text-slate-400 text-lg">Model your debt reduction trajectory and see instantly how dropping revolving utilization below critical 30% and 10% thresholds restores your credit score.</p>
@@ -113,7 +266,7 @@
             </div>
         </section>
 
-        <!-- TAB 2: FCRA DISPUTE LETTER GENERATOR -->
+        <!-- TAB 3: FCRA DISPUTE LETTER GENERATOR -->
         <section id="tab-dispute" class="hidden space-y-8">
             <div class="max-w-3xl">
                 <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">FCRA Dispute Letter Generator</h1>
@@ -172,7 +325,7 @@
             </div>
         </section>
 
-        <!-- TAB 3: DEBT VALIDATION LETTER GENERATOR -->
+        <!-- TAB 4: DEBT VALIDATION LETTER GENERATOR -->
         <section id="tab-validation" class="hidden space-y-8">
             <div class="max-w-3xl">
                 <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">FDCPA Debt Validation Letter Generator</h1>
@@ -219,7 +372,7 @@
             </div>
         </section>
 
-        <!-- TAB 4: AUDIT CHECKLIST -->
+        <!-- TAB 5: AUDIT CHECKLIST -->
         <section id="tab-checklist" class="hidden space-y-6">
             <div class="max-w-3xl">
                 <h1 class="text-3xl font-extrabold tracking-tight text-white">Credit Report Audit Checklist</h1>
@@ -231,7 +384,7 @@
             </div>
         </section>
 
-        <!-- TAB 5: CURRICULUM -->
+        <!-- TAB 6: CURRICULUM -->
         <section id="tab-curriculum" class="hidden space-y-6">
             <div class="max-w-3xl">
                 <h1 class="text-3xl font-extrabold tracking-tight text-white">The 500-Module Master Curriculum</h1>
@@ -254,57 +407,112 @@
     <script>
         // Tab Navigation
         function switchTab(tabId) {
-            ['simulator', 'dispute', 'validation', 'checklist', 'curriculum'].forEach(t => {
-                document.getElementById(`tab-${t}`).classList.add('hidden');
-                document.getElementById(`nav-${t}`).classList.remove('text-indigo-400');
+            ['dashboard', 'estimator', 'simulator', 'dispute', 'validation', 'checklist', 'curriculum'].forEach(t => {
+                const el = document.getElementById(`tab-${t}`);
+                const nav = document.getElementById(`nav-${t}`);
+                if (el) el.classList.add('hidden');
+                if (nav) nav.classList.remove('text-indigo-400');
             });
-            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
-            document.getElementById(`nav-${tabId}`).classList.add('text-indigo-400');
+            const activeEl = document.getElementById(`tab-${tabId}`);
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if (activeEl) activeEl.classList.remove('hidden');
+            if (activeNav) activeNav.classList.add('text-indigo-400');
         }
 
         // Initialize Chart & Generators
         let chartInstance = null;
         function initApp() {
-            const ctx = document.getElementById('simulationChart').getContext('2d');
-            chartInstance = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: [],
-                    datasets: [{
-                        label: 'Projected Balance ($)',
-                        data: [],
-                        borderColor: '#6366f1',
-                        backgroundColor: 'rgba(99, 102, 241, 0.1)',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } },
-                        y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } }
+            const canvasEl = document.getElementById('simulationChart');
+            if (canvasEl) {
+                const ctx = canvasEl.getContext('2d');
+                chartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: 'Projected Balance ($)',
+                            data: [],
+                            borderColor: '#6366f1',
+                            backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } },
+                            y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } }
+                        }
                     }
-                }
-            });
-            runSimulation();
+                });
+                runSimulation();
+            }
+            calculateEstimatedScore();
             generateDisputeLetter();
             generateValidationLetter();
             loadChecklist();
             loadCurriculum();
         }
 
+        function calculateEstimatedScore() {
+            const lates = parseInt(document.getElementById('est-lates')?.value || '0');
+            const util = parseInt(document.getElementById('est-util')?.value || '50');
+            const age = parseInt(document.getElementById('est-age')?.value || '35');
+            const inquiries = parseInt(document.getElementById('est-inquiries')?.value || '10');
+
+            let baseScore = 650;
+            let totalScore = baseScore + lates + util + age + inquiries;
+            if (totalScore > 850) totalScore = 850;
+            if (totalScore < 300) totalScore = 300;
+
+            const scoreDisplay = document.getElementById('est-score-display');
+            const badge = document.getElementById('est-tier-badge');
+            const feedback = document.getElementById('est-feedback');
+
+            if (scoreDisplay) scoreDisplay.innerText = totalScore;
+
+            let tier = "Good";
+            let colorClass = "text-emerald-400 bg-emerald-500/10";
+            let msg = "Your profile is in solid standing. Focus on keeping utilization low to maximize point gains.";
+
+            if (totalScore >= 800) {
+                tier = "Exceptional";
+                colorClass = "text-indigo-400 bg-indigo-500/10";
+                msg = "Elite tier! You qualify for the absolute lowest interest rates and prime credit card perks.";
+            } else if (totalScore >= 740) {
+                tier = "Very Good";
+                colorClass = "text-emerald-400 bg-emerald-500/10";
+                msg = "Strong profile. You qualify for prime lending tiers across mortgages and auto loans.";
+            } else if (totalScore >= 670) {
+                tier = "Good";
+                colorClass = "text-emerald-400 bg-emerald-500/10";
+                msg = "Acceptable credit standing, though optimizing revolving utilization will push you into prime tiers.";
+            } else {
+                tier = "Fair / Needs Repair";
+                colorClass = "text-amber-400 bg-amber-500/10";
+                msg = "Action required: Prioritize paying down revolving balances below 30% and disputing inaccurate late marks.";
+            }
+
+            if (badge) {
+                badge.innerText = tier;
+                badge.className = `text-xs font-semibold px-2.5 py-1 rounded-full ${colorClass}`;
+            }
+            if (feedback) feedback.innerText = msg;
+        }
+
         function runSimulation() {
-            const balance = parseFloat(document.getElementById('sim-balance').value) || 0;
-            const monthly = parseFloat(document.getElementById('sim-monthly').value) || 0;
-            const rate = (parseFloat(document.getElementById('sim-rate').value) || 0) / 100 / 12;
-            const limit = parseFloat(document.getElementById('sim-limit').value) || 1;
+            const balance = parseFloat(document.getElementById('sim-balance')?.value) || 0;
+            const monthly = parseFloat(document.getElementById('sim-monthly')?.value) || 0;
+            const rate = (parseFloat(document.getElementById('sim-rate')?.value) || 0) / 100 / 12;
+            const limit = parseFloat(document.getElementById('sim-limit')?.value) || 1;
 
             const startUtil = ((balance / limit) * 100).toFixed(0);
-            document.getElementById('stat-start-util').innerText = startUtil + '%';
+            const utilEl = document.getElementById('stat-start-util');
+            if (utilEl) utilEl.innerText = startUtil + '%';
 
             let currentBal = balance;
             let months = 0;
@@ -321,7 +529,8 @@
                 if (currentBal === 0) break;
             }
 
-            document.getElementById('stat-payoff-time').innerText = months >= 60 ? '5+ Years' : `${months} Months`;
+            const timeEl = document.getElementById('stat-payoff-time');
+            if (timeEl) timeEl.innerText = months >= 60 ? '5+ Years' : `${months} Months`;
 
             if (chartInstance) {
                 chartInstance.data.labels = labels;
@@ -332,11 +541,11 @@
 
         // Letter Generators
         function generateDisputeLetter() {
-            const name = document.getElementById('gen-name').value;
-            const bureau = document.getElementById('gen-bureau').value;
-            const creditor = document.getElementById('gen-creditor').value;
-            const account = document.getElementById('gen-account').value;
-            const reason = document.getElementById('gen-reason').value;
+            const name = document.getElementById('gen-name')?.value || '';
+            const bureau = document.getElementById('gen-bureau')?.value || '';
+            const creditor = document.getElementById('gen-creditor')?.value || '';
+            const account = document.getElementById('gen-account')?.value || '';
+            const reason = document.getElementById('gen-reason')?.value || '';
             const today = new Date().toLocaleDateString();
 
             const letter = `[${name}]
@@ -366,14 +575,15 @@ Sincerely,
 
 ${name}`;
 
-            document.getElementById('dispute-output').value = letter;
+            const out = document.getElementById('dispute-output');
+            if (out) out.value = letter;
         }
 
         function generateValidationLetter() {
-            const name = document.getElementById('val-name').value;
-            const agency = document.getElementById('val-agency').value;
-            const account = document.getElementById('val-account').value;
-            const original = document.getElementById('val-original').value;
+            const name = document.getElementById('val-name')?.value || '';
+            const agency = document.getElementById('val-agency')?.value || '';
+            const account = document.getElementById('val-account')?.value || '';
+            const original = document.getElementById('val-original')?.value || '';
             const today = new Date().toLocaleDateString();
 
             const letter = `[${name}]
@@ -404,14 +614,17 @@ Sincerely,
 
 ${name}`;
 
-            document.getElementById('validation-output').value = letter;
+            const out = document.getElementById('validation-output');
+            if (out) out.value = letter;
         }
 
         function copyText(elementId, btnTextId) {
             const textarea = document.getElementById(elementId);
+            if (!textarea) return;
             textarea.select();
             document.execCommand('copy');
             const btn = document.getElementById(btnTextId);
+            if (!btn) return;
             const original = btn.innerText;
             btn.innerText = "Copied!";
             setTimeout(() => { btn.innerText = original; }, 2000);
@@ -420,6 +633,7 @@ ${name}`;
         // Checklist Loader
         function loadChecklist() {
             const container = document.getElementById('checklist-container');
+            if (!container) return;
             const items = [
                 "Outdated personal information (old employers, incorrect name spellings, old addresses tied to bad files).",
                 "Accounts marked as 'Open' that were actually closed by you in good standing.",
@@ -444,6 +658,7 @@ ${name}`;
         // Curriculum Loader
         function loadCurriculum() {
             const container = document.getElementById('curriculum-container');
+            if (!container) return;
             const phases = [
                 { title: "Phase 1: Foundations & Bureaus", range: "Modules 1–50", desc: "FICO scoring models, Equifax/Experian/TransUnion matrix, ghost profiles, and authorized user rules." },
                 { title: "Phase 2: Utilization & Debt Math", range: "Modules 51–100", desc: "30% threshold formulas, AZEO tricks, statement closing dates, and debt payoff compounding." },
